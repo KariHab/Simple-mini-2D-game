@@ -10,6 +10,12 @@
 #include "../MLX42/include/MLX42/MLX42.h"
 
 
+#define PLAYER "./Assets_map/1_Sprites/Player.png"
+#define EXIT "./Assets_map/1_Sprites/Bed_Exit.png"
+#define WALL "./Assets_map/1_Sprites/Wall.png"
+#define FLOOR "./Assets_map/1_Sprites/Floor.png"
+#define TEDDY "./Assets_map/1_Sprites/Teddy.png"
+
 #define WIDTH 520
 #define HEIGHT 520
 
