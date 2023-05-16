@@ -1,54 +1,60 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   test.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: khabbout <khabbout@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/15 20:22:22 by khabbout          #+#    #+#             */
+/*   Updated: 2023/05/15 20:22:22 by khabbout         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-// #include "../Headers/so_long.h"
+#include "../Headers/so_long.h"
 
-#include <stdio.h>
-#include <unistd.h>
-#include <stdlib.h>
-#include "../MLX42/include/MLX42/MLX42.h"
-
-
-#define WIDTH 256
-#define HEIGHT 256
-
-
-// Exit the program as failure.
-static void ft_error(void)
+static void error(void)
 {
-	fprintf(stderr, "%s", mlx_strerror(mlx_errno));
+	puts(mlx_strerror(mlx_errno));
 	exit(EXIT_FAILURE);
 }
 
-// Print the window width and height.
-static void ft_hook(void* param)
+int32_t main(void)
 {
-	const mlx_t* mlx = param;
-
-	printf("WIDTH: %d | HEIGHT: %d\n", mlx->width, mlx->height);
-}
-
-int32_t	main(void)
-{
-
-	// MLX allows you to define its core behaviour before startup.
-	mlx_set_setting(MLX_MAXIMIZED, true);
-	mlx_t* mlx = mlx_init(WIDTH, HEIGHT, "42Balls", true);
+	// Start mlx
+	mlx_t *mlx = mlx_init(WIDTH, HEIGHT, "Grab your teddy and go to sleep!", true);
 	if (!mlx)
-		ft_error();
+		error();
 
-	/* Do stuff */
+	// Try to load the file
+	mlx_texture_t *texture1 = mlx_load_png("./Assets_map/1_Sprites/Floor.png");
+	if (!texture1)
+		error();
 
-	// Create and display the image.
-	mlx_image_t* img = mlx_new_image(mlx, 256, 256);
-	if (!img || (mlx_image_to_window(mlx, img, 0, 0) < 0))
-		ft_error();
+	mlx_texture_t *texture2 = mlx_load_png("./Assets_map/1_Sprites/Teddy.png");
+	if (!texture2)
+		error();
 
-	// Even after the image is being displayed, we can still modify the buffer.
-	mlx_put_pixel(img, 0, 0, 0xFF0000FF);
+	// Convert texture to a displayable image
+	mlx_image_t *img1 = mlx_texture_to_image(mlx, texture1);
+	if (!img1)
+		error();
 
-	// Register a hook and pass mlx as an optional param.
-	// NOTE: Do this before calling mlx_loop!
-	mlx_loop_hook(mlx, ft_hook, mlx);
+	mlx_image_t *img2 = mlx_texture_to_image(mlx, texture2);
+	if (!img2)
+		error();
+
+	// Display the image
+	if (mlx_image_to_window(mlx, img1, 0, 0) < 0)
+		error();
+	if (mlx_image_to_window(mlx, img2, 0, 0) < 0)
+		error();
 	mlx_loop(mlx);
+
+	// Optional, terminate will clean up any leftovers, this is just to demonstrate.
+	mlx_delete_image(mlx, img1);
+	mlx_delete_texture(texture1);
+	mlx_delete_image(mlx, img2);
+	mlx_delete_texture(texture2);
 	mlx_terminate(mlx);
 	return (EXIT_SUCCESS);
 }

@@ -1,0 +1,3 @@
+/*create the map
+init map
+init player*/
