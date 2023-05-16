@@ -3,7 +3,7 @@ CFLAGS	:= -Wextra -Wall -Werror -Wunreachable-code -Ofast
 LIBMLX	:= MLX42
 
 HEADERS	:= -I ./include -I $(LIBMLX)/include
-LIBS	:= $(LIBMLX)/build/libmlx42.a -ldl -lglfw -pthread -lm
+LIBS	:= $(LIBMLX)/build/libmlx42.a -ldl -lglfw -L "/Users/$(USER)/.brew/opt/glfw/lib/" -pthread -lm -framework Cocoa -framework OpenGL -framework IOKit
 SRCS	:= $(shell find ./Sources -iname "*.c")
 OBJS	:= ${SRCS:.c=.o}
 
@@ -28,3 +28,5 @@ fclean: clean
 re: clean all
 
 .PHONY: all, clean, fclean, re, libmlx
+
+#for linux wsl il faut just    LIBS	:= $(LIBMLX)/build/libmlx42.a -ldl -lglfw -pthread -lm

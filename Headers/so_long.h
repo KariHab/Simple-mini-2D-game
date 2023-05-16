@@ -16,11 +16,14 @@
 typedef struct window{
     int index_x;
     int index_y;
-    int width;
-    int height;
+    int window_width;
+    int window_height;
 } window;
 
 typedef struct image{
+    void *mlx_img;
+    int width;
+    int height;
     char *wall;
     char *teddy;
     char *ground;
@@ -35,6 +38,8 @@ typedef struct map{
     int number_of_teddy;
     int number_of_exit;
     int number_of_teddy_collected;
+    int index_1;
+    int index_2;
 } map;
 
 
