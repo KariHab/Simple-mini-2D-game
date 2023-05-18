@@ -17,8 +17,5 @@
 // {
 //     if (ac == 2)
 //     {
-//     //check map extension
-//     if (check_extension_map_file(av[1]) == -1)
-//         printf("Wrong file extension for your map");
 //     }
 // }

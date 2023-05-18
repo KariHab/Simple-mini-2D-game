@@ -26,35 +26,35 @@ int32_t main(void)
 		error();
 
 	// Try to load the file
-	mlx_texture_t *texture1 = mlx_load_png("./Assets_map/1_Sprites/Floor.png");
-	if (!texture1)
+	mlx_texture_t *floor = mlx_load_png("./Assets_map/1_Sprites/Floor.png");
+	if (!floor)
 		error();
 
-	mlx_texture_t *texture2 = mlx_load_png("./Assets_map/1_Sprites/Teddy.png");
-	if (!texture2)
-		error();
+	// mlx_texture_t *texture2 = mlx_load_png("./Assets_map/1_Sprites/Teddy.png");
+	// if (!texture2)
+	// 	error();
 
 	// Convert texture to a displayable image
-	mlx_image_t *img1 = mlx_texture_to_image(mlx, texture1);
+	mlx_image_t *img1 = mlx_texture_to_image(mlx, floor);
 	if (!img1)
 		error();
 
-	mlx_image_t *img2 = mlx_texture_to_image(mlx, texture2);
-	if (!img2)
-		error();
+	// mlx_image_t *img2 = mlx_texture_to_image(mlx, texture2);
+	// if (!img2)
+	// 	error();
 
 	// Display the image
 	if (mlx_image_to_window(mlx, img1, 0, 0) < 0)
 		error();
-	if (mlx_image_to_window(mlx, img2, 0, 0) < 0)
-		error();
+	// if (mlx_image_to_window(mlx, img2, 0, 0) < 0)
+	// 	error();
 	mlx_loop(mlx);
 
 	// Optional, terminate will clean up any leftovers, this is just to demonstrate.
 	mlx_delete_image(mlx, img1);
-	mlx_delete_texture(texture1);
-	mlx_delete_image(mlx, img2);
-	mlx_delete_texture(texture2);
+	mlx_delete_texture(floor);
+	// mlx_delete_image(mlx, img2);
+	// mlx_delete_texture(texture2);
 	mlx_terminate(mlx);
 	return (EXIT_SUCCESS);
 }
