@@ -4,8 +4,11 @@
 
 #include <stdio.h>
 #include <unistd.h>
+#include <fcntl.h>
 #include <stdlib.h>
 #include <string.h>
+#include "../ft_printf/ft_printf.h"
+#include "../libft/libft.h"
 #include "../MLX42/include/MLX42/MLX42.h"
 
 #define PLAYER "./Assets_map/1_Sprites/Player.png"
@@ -17,15 +20,8 @@
 #define WIDTH 520
 #define HEIGHT 520
 
-typedef struct window
+typedef struct texture
 {
-    int index_x;
-    int index_y;
-    int window_width;
-    int window_height;
-} window;
-
-typedef struct texture{
     mlx_texture_t *wall;
     mlx_texture_t *teddy;
     mlx_texture_t *floor;
@@ -34,25 +30,40 @@ typedef struct texture{
 
 } t_texture;
 
+typedef struct image
+{
+    mlx_image_t *wall;
+    mlx_image_t *floor;
+    mlx_image_t *player;
+    mlx_image_t *exit;
+    mlx_image_t *teddy;
+    mlx_image_t *move_nbr;
+    mlx_image_t *collected_nbr;
+    mlx_image_t *move;
+
+} t_image;
+
 typedef struct map
 {
     mlx_t *mlx;
     mlx_image_t *img;
     char **map;
-    int width;
-    int height;
-    int lines_count;
     size_t line_length;
+    int line_count;
+    int fd;
     int number_of_player;
     int number_of_teddy;
     int number_of_exit;
     int number_of_teddy_collected;
-    int x;
-    int y;
+    int row;
+    int column;
+    int rectangle;
     int steps_count;
     int x_position_player;
     int y_position_player;
     t_texture texture;
+    t_image image;
+    t_image old_version;
 
 } map;
 
@@ -61,7 +72,40 @@ typedef struct map
 int check_extension_map_file(char *map_file_name);
 int check_chars_in_map(map *data);
 int check_is_map_rectangle(map *data);
-void   initialize_map(map *data);
-void    initialize_player(map *data);
+void initialize_map(map *data);
+void initialize_player(map *data);
+int check_the_wall_around_map(map *data);
+int validate_if_map_is_playable(map *data);
+mlx_image_t *load_image(char c, map *data);
+void create_image(map *data);
+void remove_image(map *data);
+void remove_texture(map *data);
+void load_texture(map *data);
+void create_the_map_render(void *param);
+void render(map *data);
+void parsing(char *path, map *data);
+void create_map(char *path, map *data);
+int  get_map_lines(char *path, map *data);
+void free_data(map *data);
+void	ft_freeall(char **tab);
 
+
+
+
+#ifndef BUFFER_SIZE
+#define BUFFER_SIZE 128
+#endif
+
+// str
+size_t ft_strlen(const char *s);
+char *ft_strjoin(char *s1, char *s2);
+void *ft_calloc(size_t count, size_t size);
+void ft_bzero(void *s, size_t n);
+
+/*get_next_line*/
+char *ft_get_the_line(char *str);
+char *ft_get_the_next(char *str);
+int ft_newline(char *str);
+char *ft_read(int fd, char *buf, char *tmp, char *str);
+char *get_next_line(int fd);
 #endif
