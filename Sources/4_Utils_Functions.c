@@ -1,12 +1,6 @@
 
 #include "../Headers/so_long.h"
 
-void	free_data(map *data)
-{
-	free(data);
-}
-
-
 void	ft_freeall(char **tab)
 {
 	int	i;

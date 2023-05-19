@@ -17,8 +17,13 @@
 #define FLOOR "./Assets_map/1_Sprites/Floor.png"
 #define TEDDY "./Assets_map/1_Sprites/Teddy.png"
 
-#define WIDTH 520
-#define HEIGHT 520
+// #define WIDTH 520
+// #define HEIGHT 520
+
+
+#ifndef BUFFER_SIZE
+#define BUFFER_SIZE 128
+#endif
 
 typedef struct texture
 {
@@ -58,6 +63,7 @@ typedef struct map
     int row;
     int column;
     int rectangle;
+    int wall;
     int steps_count;
     int x_position_player;
     int y_position_player;
@@ -71,10 +77,10 @@ typedef struct map
 /*map parsing*/
 int check_extension_map_file(char *map_file_name);
 int check_chars_in_map(map *data);
-int check_is_map_rectangle(map *data);
+void check_is_map_rectangle(map *data);
 void initialize_map(map *data);
 void initialize_player(map *data);
-int check_the_wall_around_map(map *data);
+void check_the_wall_around_map(map *data);
 int validate_if_map_is_playable(map *data);
 mlx_image_t *load_image(char c, map *data);
 void create_image(map *data);
@@ -85,17 +91,11 @@ void create_the_map_render(void *param);
 void render(map *data);
 void parsing(char *path, map *data);
 void create_map(char *path, map *data);
-int  get_map_lines(char *path, map *data);
-void free_data(map *data);
+map  *get_map_lines(char *path, map *data);
 void	ft_freeall(char **tab);
-
-
-
-
-#ifndef BUFFER_SIZE
-#define BUFFER_SIZE 128
-#endif
-
+void	ft_count(map *data, int x, int y);
+void	count_objects(map *data);
+void	key_hook_handler(mlx_key_data_t keydata, void *param);
 // str
 size_t ft_strlen(const char *s);
 char *ft_strjoin(char *s1, char *s2);
