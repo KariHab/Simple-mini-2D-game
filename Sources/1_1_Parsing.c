@@ -1,14 +1,35 @@
-
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   1_1_Parsing.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: khabbout <khabbout@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/22 15:27:00 by khabbout          #+#    #+#             */
+/*   Updated: 2023/05/22 15:27:00 by khabbout         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../Headers/so_long.h"
+
+int validate_if_map_is_playable(map *data)
+{
+    if (data->number_of_exit != 1)
+        printf("ERROR.The map should have an exit\n");
+    if (data->number_of_player != 1)
+        printf("ERROR.This is a solo game\n");
+    if (data->rectangle == 1)
+        printf("ERROR.The map should be rectangle\n");
+    if (data->wall == 1)
+        printf("ERROR.This is not an open world map\n");
+    return (0);
+}
 
 map *get_map_lines(char *path, map *data)
 {
 	char *str;
 	int fd;
-	// int line_count;
 
-	// line_count = 0;
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
 		printf("ERROR: open failed\n");
@@ -25,32 +46,10 @@ map *get_map_lines(char *path, map *data)
 	}
 	return (data);
 }
-// void	put_input_in_map(int row, int column, int i, map *data)
-// {
-// 	char	*line;
-
-// 	line = get_next_line(data->fd);
-// 	while (line != NULL)
-// 	{
-// 		data->map[row] = ft_calloc(ft_strlen(line) + 1, sizeof(char));
-// 		if (!data->map[row])
-// 			return (ft_freeall(data->map));
-// 		while (line[i] != '\0')
-// 			data->map[row][column++] = line[i++];
-// 		data->map[row++][column] = '\0';
-// 		column = 0;
-// 		i = 0;
-// 		free(line);
-// 		line = get_next_line(data->fd);
-// 	}
-// 	data->map[row] = NULL;
-// }
 
 void create_map(char *path, map *data)
 {
-
 	int i;
-	// int fd;
 
 	i = 0;
 	get_map_lines(path, data);
@@ -76,10 +75,9 @@ void parsing(char *path, map *data)
 {
 	create_map(path, data);
 	count_objects(data);
-	// check_chars_in_map(data);
 	data->column = ft_strlen(data->map[0]);
 	check_is_map_rectangle(data);
 	check_the_wall_around_map(data);
 	validate_if_map_is_playable(data);
-	// ft_flood(ms);
+	// flood(data);
 }

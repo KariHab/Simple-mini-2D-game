@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   2_0_Rendering.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: khabbout <khabbout@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/22 15:27:03 by khabbout          #+#    #+#             */
+/*   Updated: 2023/05/22 15:27:03 by khabbout         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 
 
 #include "../Headers/so_long.h"
@@ -51,11 +63,9 @@ void render(map *data)
 	if (!data->mlx)
 		exit(EXIT_FAILURE);
 	load_texture(data);
-	// printf("%d %d\n", data->x_position_player, data->y_position_player);
 	create_the_map_render(data);
 	mlx_loop_hook(data->mlx, &create_the_map_render, data);
 	mlx_key_hook(data->mlx, &key_hook_handler, data);
-	// printf("%d %d\n", data->x_position_player, data->y_position_player);
 	mlx_loop(data->mlx);
 	remove_texture(data);
 }

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   so_long.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: khabbout <khabbout@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/22 15:27:25 by khabbout          #+#    #+#             */
+/*   Updated: 2023/05/22 15:27:25 by khabbout         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 
 #ifndef SO_LONG_H
 #define SO_LONG_H
@@ -67,6 +79,8 @@ typedef struct map
     int steps_count;
     int x_position_player;
     int y_position_player;
+    int exit;
+    int collect;
     t_texture texture;
     t_image image;
     t_image old_version;
@@ -96,6 +110,21 @@ void	ft_freeall(char **tab);
 void	ft_count(map *data, int x, int y);
 void	count_objects(map *data);
 void	key_hook_handler(mlx_key_data_t keydata, void *param);
+void move_player_x_axis(map *data, char direction);
+void move_player_y_axis(map *data, char direction);
+// void  print_collected_and_moves(map *data);
+// void	print_moves(map *data);
+// void	print_teddy_collected(map *data);
+// void flood(map *data);
+// void    flood_fill(int x, int y, map *data);
+
+
+
+
+
+
+
+
 // str
 size_t ft_strlen(const char *s);
 char *ft_strjoin(char *s1, char *s2);

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   0_1_Init_load.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: khabbout <khabbout@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/22 15:26:48 by khabbout          #+#    #+#             */
+/*   Updated: 2023/05/22 15:26:48 by khabbout         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 
 #include "../Headers/so_long.h"
 
@@ -29,8 +41,8 @@ void initialize_player(map *data)
         {
             if (data->map[i][j] == 'P')
             {
-                data->x_position_player = i;
-                data->y_position_player = j;
+                data->y_position_player = i;
+                data->x_position_player = j;
             }
             j++;
         }

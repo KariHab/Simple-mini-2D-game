@@ -20,11 +20,14 @@ int main(int ac, char **av)
         printf("Invalid number of args\n");
     if (ac == 2)
     {
+
         if (check_extension_map_file(av[1]) == -1)
             printf("Format file is not .ber\n");
         initialize_map(&data);
         parsing(av[1], &data);
         initialize_player(&data);
+        printf("Teddy  to collect %d\n", data.number_of_teddy);
+        printf("Teddy collected %d\n", data.number_of_teddy_collected);
         render(&data);
         mlx_terminate(data.mlx);
         ft_freeall(data.map);
