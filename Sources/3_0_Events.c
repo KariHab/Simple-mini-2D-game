@@ -33,8 +33,8 @@ void	key_hook_handler(mlx_key_data_t keydata, void *param)
 				move_player_x_axis(data, 'a');
 		if (keydata.key == MLX_KEY_ESCAPE)
 			mlx_close_window(data->mlx);
-		data->steps_count++;
-		printf("Moves: %d\n", data->steps_count);
+		// data->steps_count++;
+		// ft_printf("Moves: %d\n", data->steps_count);
 	}
 }
 
@@ -47,13 +47,16 @@ void	move_player_y_axis(map *data, char direction)
 		data->map[data->y_pos_player - 1][data->x_pos_player] = 'P';
 		data->map[data->y_pos_player][data->x_pos_player] = '0';
 		data->y_pos_player--;
+		data->steps_count++;
 	}
 	if (direction == 's')
 	{
 		data->map[data->y_pos_player + 1][data->x_pos_player] = 'P';
 		data->map[data->y_pos_player][data->x_pos_player] = '0';
 		data->y_pos_player++;
+		data->steps_count++;
 	}
+	ft_printf("Moves: %d\n", data->steps_count);
 }
 
 void	move_player_x_axis(map *data, char direction)
@@ -63,13 +66,16 @@ void	move_player_x_axis(map *data, char direction)
 		data->map[data->y_pos_player][data->x_pos_player - 1] = 'P';
 		data->map[data->y_pos_player][data->x_pos_player] = '0';
 		data->x_pos_player--;
+		data->steps_count++;
 	}
 	if (direction == 'd')
 	{
 		data->map[data->y_pos_player][data->x_pos_player + 1] = 'P';
 		data->map[data->y_pos_player][data->x_pos_player] = '0';
 		data->x_pos_player++;
+		data->steps_count++;
 	}
+	ft_printf("Moves: %d\n", data->steps_count);
 }
 
 // void handle_collectible(map *data)

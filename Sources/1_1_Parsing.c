@@ -17,13 +17,13 @@
 int validate_if_map_is_playable(map *data)
 {
     if (data->number_of_exit != 1)
-        printf("ERROR.The map should have an exit\n");
+        ft_printf("ERROR.The map should have an exit\n");
     if (data->number_of_player != 1)
-        printf("ERROR.This is a solo game\n");
+        ft_printf("ERROR.This is a solo game\n");
     if (data->rectangle == 1)
-        printf("ERROR.The map should be rectangle\n");
+        ft_printf("ERROR.The map should be rectangle\n");
     if (data->wall == 1)
-        printf("ERROR.This is not an open world map\n");
+        ft_printf("ERROR.This is not an open world map\n");
     return (0);
 }
 
@@ -34,7 +34,7 @@ map *get_map_lines(char *path, map *data)
 
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
-		printf("ERROR: open failed\n");
+		ft_printf("ERROR: open failed\n");
 	else
 	{
 		str = get_next_line(fd);

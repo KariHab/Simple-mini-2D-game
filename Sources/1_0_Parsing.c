@@ -10,8 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
-
 #include "../Headers/so_long.h"
 /*we need to check the file extension is .ber*/
 int	check_extension_map_file(char *map_file_name)
@@ -28,7 +26,8 @@ int	check_extension_map_file(char *map_file_name)
 		return (0);
 }
 
-void	ft_count(map *data, int x, int y)
+/*get the number of P E and C*/
+void	count_chars(map *data, int x, int y)
 {
 	if (data->map[y][x] == 'P')
 	{
@@ -42,6 +41,7 @@ void	ft_count(map *data, int x, int y)
 		data->number_of_teddy++;
 }
 
+/**/
 void	count_objects(map *data)
 {
 	int	x;
@@ -54,7 +54,7 @@ void	count_objects(map *data)
 		x = 0;
 		while (data->map[y][x])
 		{
-			ft_count(data, x, y);
+			count_chars(data, x, y);
 			x++;
 		}
 		y++;

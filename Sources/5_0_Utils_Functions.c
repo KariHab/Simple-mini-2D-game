@@ -13,7 +13,7 @@
 
 #include "../Headers/so_long.h"
 
-void	ft_freeall(char **tab)
+void	free_all(char **tab)
 {
 	int	i;
 

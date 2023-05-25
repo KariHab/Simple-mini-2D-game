@@ -103,8 +103,8 @@ void render(map *data);
 void parsing(char *path, map *data);
 void create_map(char *path, map *data);
 map *get_map_lines(char *path, map *data);
-void ft_freeall(char **tab);
-void ft_count(map *data, int x, int y);
+void free_all(char **tab);
+void count_chars(map *data, int x, int y);
 void count_objects(map *data);
 void key_hook_handler(mlx_key_data_t keydata, void *param);
 void move_player_x_axis(map *data, char direction);
@@ -116,16 +116,4 @@ void move_player_y_axis(map *data, char direction);
 // void    flood_fill(int x, int y, map *data);
 // void handle_collectible(map *data);
 
-// // str
-// size_t ft_strlen(const char *s);
-// char *ft_strjoin(char *s1, char *s2);
-// void *ft_calloc(size_t count, size_t size);
-// void ft_bzero(void *s, size_t n);
-
-// /*get_next_line*/
-// char *ft_get_the_line(char *str);
-// char *ft_get_the_next(char *str);
-// int ft_newline(char *str);
-// char *ft_read(int fd, char *buf, char *tmp, char *str);
-// char *get_next_line(int fd);
 #endif

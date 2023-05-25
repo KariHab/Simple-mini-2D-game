@@ -16,8 +16,8 @@ all: libmlx $(NAME)
 libmlx:
 	@cmake $(LIBMLX) -B $(LIBMLX)/build && make -C $(LIBMLX)/build -j4
 
-makelibft:
-	@$(MAKE) -C ./libft
+# makelibft:
+# 	@$(MAKE) -C ./libft
 %.o: %.c
 	@$(CC) $(CFLAGS) -o $@ -c $< $(HEADERS) && printf "Compiling: $(notdir $<)"
 
@@ -26,11 +26,11 @@ $(NAME): $(OBJS)
 
 clean:
 	@rm -f $(OBJS)
-	$(MAKE) clean -C ./libft
+# $(MAKE) clean -C ./libft
 
 fclean: clean
 	@rm -f $(NAME)
-	# $(MAKE) fclean -C ./libft
+#$(MAKE) fclean -C ./libft
 
 re: clean all
 
