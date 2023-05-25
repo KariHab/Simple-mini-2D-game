@@ -5,15 +5,15 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: khabbout <khabbout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/22 15:26:48 by khabbout          #+#    #+#             */
-/*   Updated: 2023/05/22 15:26:48 by khabbout         ###   ########.fr       */
+/*   Created: 2023/05/25 11:34:11 by khabbout          #+#    #+#             */
+/*   Updated: 2023/05/25 11:34:11 by khabbout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "../Headers/so_long.h"
 
-void initialize_map(map *data)
+void	initialize_map(map *data)
 {
     data->row = 0;
     data->column = 0;
