@@ -76,8 +76,8 @@ typedef struct map
     int rectangle;
     int wall;
     int steps_count;
-    int x_position_player;
-    int y_position_player;
+    int x_pos_player;
+    int y_pos_player;
     int exit;
     int collect;
     t_texture texture;
@@ -116,13 +116,7 @@ void move_player_y_axis(map *data, char direction);
 // void	print_teddy_collected(map *data);
 // void flood(map *data);
 // void    flood_fill(int x, int y, map *data);
-
-
-
-
-
-
-
+// void handle_collectible(map *data);
 
 // str
 size_t ft_strlen(const char *s);

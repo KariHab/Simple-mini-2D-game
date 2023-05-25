@@ -24,8 +24,8 @@ void	initialize_map(map *data)
     data->steps_count = 0;
     data->line_length = 0;
     data->map = NULL;
-    data->x_position_player = 0;
-    data->y_position_player = 0;
+    data->x_pos_player = 0;
+    data->y_pos_player = 0;
 }
 
 void initialize_player(map *data)
@@ -41,8 +41,8 @@ void initialize_player(map *data)
         {
             if (data->map[i][j] == 'P')
             {
-                data->y_position_player = i;
-                data->x_position_player = j;
+                data->y_pos_player = i;
+                data->x_pos_player = j;
             }
             j++;
         }

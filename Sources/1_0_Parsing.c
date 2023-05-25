@@ -33,8 +33,8 @@ void	ft_count(map *data, int x, int y)
 	if (data->map[y][x] == 'P')
 	{
 		data->number_of_player++;
-		data->x_position_player = x;
-		data->y_position_player = y;
+		data->x_pos_player = x;
+		data->y_pos_player = y;
 	}
 	else if (data->map[y][x] == 'E')
 		data->number_of_exit++;
