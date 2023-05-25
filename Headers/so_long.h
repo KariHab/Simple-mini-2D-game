@@ -18,6 +18,7 @@
 #include <fcntl.h>
 #include <stdlib.h>
 #include <string.h>
+
 #include "../Sources/libft/libft.h"
 #include "../MLX42/include/MLX42/MLX42.h"
 
@@ -115,16 +116,16 @@ void move_player_y_axis(map *data, char direction);
 // void    flood_fill(int x, int y, map *data);
 // void handle_collectible(map *data);
 
-// str
-size_t ft_strlen(const char *s);
-char *ft_strjoin(char *s1, char *s2);
-void *ft_calloc(size_t count, size_t size);
-void ft_bzero(void *s, size_t n);
+// // str
+// size_t ft_strlen(const char *s);
+// char *ft_strjoin(char *s1, char *s2);
+// void *ft_calloc(size_t count, size_t size);
+// void ft_bzero(void *s, size_t n);
 
-/*get_next_line*/
-char *ft_get_the_line(char *str);
-char *ft_get_the_next(char *str);
-int ft_newline(char *str);
-char *ft_read(int fd, char *buf, char *tmp, char *str);
-char *get_next_line(int fd);
+// /*get_next_line*/
+// char *ft_get_the_line(char *str);
+// char *ft_get_the_next(char *str);
+// int ft_newline(char *str);
+// char *ft_read(int fd, char *buf, char *tmp, char *str);
+// char *get_next_line(int fd);
 #endif

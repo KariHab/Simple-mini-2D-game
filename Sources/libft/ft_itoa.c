@@ -10,7 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../Headers/so_long.h"
+
+#include "libft.h"
 
 static int	get_size(int n)
 {

@@ -1,28 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: khabbout <khabbout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/10 09:08:07 by khabbout          #+#    #+#             */
-/*   Updated: 2023/01/10 09:08:07 by khabbout         ###   ########.fr       */
+/*   Created: 2023/01/06 10:31:45 by khabbout          #+#    #+#             */
+/*   Updated: 2023/01/06 10:31:45 by khabbout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../Headers/so_long.h"
 
-/*replace char to 0*/
-void	ft_bzero(void *s, size_t n)
+#include "libft.h"
+
+size_t	ft_strlen(const char *s)
 {
-	size_t	i;
+	int	i;
 
-	if (s == NULL)
-		return ;
 	i = 0;
-	while (i < n)
-	{
-		((char *)s)[i] = 0;
+	while (s && s[i])
 		i++;
-	}
+	return (i);
 }

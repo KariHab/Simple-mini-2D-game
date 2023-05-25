@@ -9,15 +9,15 @@ LIBS	:= $(LIBMLX)/build/libmlx42.a -ldl -lglfw -L "/Users/$(USER)/.brew/opt/glfw
 SRCS	:= $(shell find ./Sources -iname "*.c")
 OBJS	:= ${SRCS:.c=.o}
 
-# LIBFT	:=./libft/libft.a
+LIBFT	:=./libft/libft.a
 
 all: libmlx $(NAME)
 
 libmlx:
 	@cmake $(LIBMLX) -B $(LIBMLX)/build && make -C $(LIBMLX)/build -j4
 
-# makelibft:
-# 	@$(MAKE) -C ./libft
+makelibft:
+	@$(MAKE) -C ./libft
 %.o: %.c
 	@$(CC) $(CFLAGS) -o $@ -c $< $(HEADERS) && printf "Compiling: $(notdir $<)"
 

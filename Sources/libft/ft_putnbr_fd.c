@@ -12,8 +12,29 @@
 
 #include "libft.h"
 
-void	ft_putnbr_fd(int n, int fd)
+static int	get_size_int(int long nb)
 {
+	int	size;
+
+	size = 1;
+	if (nb < 0)
+	{
+		size++;
+		nb *= -1;
+	}
+	while (nb > 9)
+	{
+		size++;
+		nb /= 10;
+	}
+	return (size);
+}
+
+int	ft_putnbr_fd(int n, int fd)
+{
+	int	size;
+
+	size = get_size_int(n);
 	if (n == -2147483648)
 	{
 		ft_putchar_fd('-', fd);
@@ -35,4 +56,5 @@ void	ft_putnbr_fd(int n, int fd)
 	{
 		ft_putchar_fd((n + 48), fd);
 	}
+	return (size);
 }

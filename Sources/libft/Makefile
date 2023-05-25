@@ -41,7 +41,11 @@ SRCS =  ft_atoi.c\
 		ft_tolower.c\
 		ft_toupper.c\
 		get_next_line.c\
-		get_next_line_utils.c
+		ft_printf.c\
+		ft_printhex.c\
+		ft_printptr.c\
+		ft_printu.c
+	
 
 OBJS	=	$(SRCS:.c=.o)
 

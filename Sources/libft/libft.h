@@ -6,7 +6,7 @@
 /*   By: khabbout <khabbout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 20:11:08 by khabbout          #+#    #+#             */
-/*   Updated: 2023/05/25 13:49:40 by khabbout         ###   ########.fr       */
+/*   Updated: 2023/05/25 14:20:00 by khabbout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,24 +22,24 @@
 #include <stdlib.h>
 #include <stdarg.h>
 
+/*printf*/
 int ft_printf(const char *s, ...);
 int ft_printu(unsigned int nb);
 int ft_printptr(uintptr_t ptr);
 int ft_printhex(unsigned int nbr, char specifier);
 
-// for char
+
 int ft_isalpha(int c);
 int ft_isdigit(int c);
 int ft_isalnum(int c);
 int ft_isascii(int c);
 int ft_isprint(int c);
-void ft_putchar_fd(char c, int fd);
+int ft_putchar_fd(char c, int fd);
 
-// for modifying char
 int ft_toupper(int c);
 int ft_tolower(int c);
 
-// str
+
 size_t ft_strlcpy(char *dst, char *src, size_t dstsize);
 size_t ft_strlcat(char *dst, char *src, size_t dstsize);
 char *ft_strchr(char *s, int c);
@@ -53,10 +53,10 @@ char *ft_strtrim(char *s1, char *set);
 char **ft_split(char const *s, char c);
 char *ft_strmapi(char *s, char (*f)(unsigned int, char));
 void ft_striteri(char *s, void (*f)(unsigned int, char *));
-void ft_putstr_fd(char *s, int fd);
+int ft_putstr_fd(char *s, int fd);
 void ft_putendl_fd(char *s, int fd);
 
-// for memory
+
 void *ft_memset(void *b, int c, size_t len);
 void ft_bzero(void *s, size_t n);
 void *ft_memcpy(void *dest, const void *src, size_t n);
@@ -65,10 +65,9 @@ void *ft_memchr(const void *s, int c, size_t n);
 int ft_memcmp(const void *s1, const void *s2, size_t n);
 void *ft_calloc(size_t count, size_t size);
 
-// other
 int ft_atoi(const char *str);
 char *ft_itoa(int n);
-void ft_putnbr_fd(int n, int fd);
+int ft_putnbr_fd(int n, int fd);
 
 size_t ft_strlen(const char *s);
 char *ft_strjoin(char *s1, char *s2);

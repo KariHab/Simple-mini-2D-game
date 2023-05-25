@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../Headers/so_long.h"
+#include "libft.h"
 
 char	*ft_get_the_line(char *str)
 {
