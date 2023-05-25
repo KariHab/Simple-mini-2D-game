@@ -18,8 +18,7 @@
 #include <fcntl.h>
 #include <stdlib.h>
 #include <string.h>
-#include "../ft_printf/ft_printf.h"
-#include "../libft/libft.h"
+#include "../Sources/libft/libft.h"
 #include "../MLX42/include/MLX42/MLX42.h"
 
 #define PLAYER "./Assets_map/1_Sprites/Player.png"
@@ -30,7 +29,6 @@
 
 // #define WIDTH 520
 // #define HEIGHT 520
-
 
 #ifndef BUFFER_SIZE
 #define BUFFER_SIZE 128
@@ -86,7 +84,6 @@ typedef struct map
 
 } map;
 
-
 /*map parsing*/
 int check_extension_map_file(char *map_file_name);
 int check_chars_in_map(map *data);
@@ -104,11 +101,11 @@ void create_the_map_render(void *param);
 void render(map *data);
 void parsing(char *path, map *data);
 void create_map(char *path, map *data);
-map  *get_map_lines(char *path, map *data);
-void	ft_freeall(char **tab);
-void	ft_count(map *data, int x, int y);
-void	count_objects(map *data);
-void	key_hook_handler(mlx_key_data_t keydata, void *param);
+map *get_map_lines(char *path, map *data);
+void ft_freeall(char **tab);
+void ft_count(map *data, int x, int y);
+void count_objects(map *data);
+void key_hook_handler(mlx_key_data_t keydata, void *param);
 void move_player_x_axis(map *data, char direction);
 void move_player_y_axis(map *data, char direction);
 // void  print_collected_and_moves(map *data);
