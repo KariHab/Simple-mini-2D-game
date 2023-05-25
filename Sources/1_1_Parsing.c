@@ -10,21 +10,37 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
-
 #include "../Headers/so_long.h"
 
 int validate_if_map_is_playable(map *data)
 {
-    if (data->number_of_exit != 1)
-        ft_printf("ERROR.The map should have an exit\n");
-    if (data->number_of_player != 1)
-        ft_printf("ERROR.This is a solo game\n");
-    if (data->rectangle == 1)
-        ft_printf("ERROR.The map should be rectangle\n");
-    if (data->wall == 1)
-        ft_printf("ERROR.This is not an open world map\n");
-    return (0);
+	if (data->number_of_exit != 1)
+	{
+		ft_printf("ERROR.The map should have an exit\n");
+		return (1);
+	}
+	if (data->number_of_player != 1)
+	{
+		ft_printf("ERROR.This is a solo game\n");
+		return (1);
+	}
+	if (data->rectangle == 1)
+	{
+		ft_printf("ERROR.The map should be rectangle\n");
+		return (1);
+	}
+	if (data->wall == 1)
+	{
+		ft_printf("ERROR.This is not an open world map\n");
+		return (1);
+	}
+	if (data->wrong_char == 1)
+	{
+		ft_printf("ERROR.You put a wrong char in the map\n");
+		return (1);
+	}
+
+	return (0);
 }
 
 map *get_map_lines(char *path, map *data)
@@ -81,5 +97,10 @@ void parsing(char *path, map *data)
 	check_is_map_rectangle(data);
 	check_the_wall_around_map(data);
 	validate_if_map_is_playable(data);
+	// {
+	// 	free_all(data->map);
+	// 	return;
+	// }
+
 	// flood(data);
 }

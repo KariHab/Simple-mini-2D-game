@@ -79,6 +79,7 @@ typedef struct map
     int y_pos_player;
     int exit;
     int collect;
+    int wrong_char;
     t_texture texture;
     t_image image;
     t_image old_version;
