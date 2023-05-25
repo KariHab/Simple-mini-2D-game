@@ -97,10 +97,5 @@ void parsing(char *path, map *data)
 	check_is_map_rectangle(data);
 	check_the_wall_around_map(data);
 	validate_if_map_is_playable(data);
-	// {
-	// 	free_all(data->map);
-	// 	return;
-	// }
-
 	// flood(data);
 }
