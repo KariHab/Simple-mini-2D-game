@@ -33,8 +33,6 @@ void	key_hook_handler(mlx_key_data_t keydata, void *param)
 				move_player_x_axis(data, 'a');
 		if (keydata.key == MLX_KEY_ESCAPE)
 			mlx_close_window(data->mlx);
-		// data->steps_count++;
-		// ft_printf("Moves: %d\n", data->steps_count);
 	}
 }
 
@@ -42,8 +40,6 @@ void	move_player_y_axis(map *data, char direction)
 {
 	if (direction == 'w')
 	{
-		// if (data->map[data->y_pos_player][data->x_pos_player] == 'C')
-		// data->number_of_teddy--;
 		data->map[data->y_pos_player - 1][data->x_pos_player] = 'P';
 		data->map[data->y_pos_player][data->x_pos_player] = '0';
 		data->y_pos_player--;

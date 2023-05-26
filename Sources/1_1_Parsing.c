@@ -15,31 +15,17 @@
 int validate_if_map_is_playable(map *data)
 {
 	if (data->number_of_exit != 1)
-	{
-		ft_printf("ERROR.The map should have an exit\n");
-		return (1);
-	}
+		exit(ft_printf("ERROR.The map should have an exit\n"));
 	if (data->number_of_player != 1)
-	{
-		ft_printf("ERROR.This is a solo game\n");
-		return (1);
-	}
+		exit(ft_printf("ERROR.This is a solo game\n"));
 	if (data->rectangle == 1)
-	{
-		ft_printf("ERROR.The map should be rectangle\n");
-		return (1);
-	}
+		exit(ft_printf("ERROR.The map should be rectangle\n"));
 	if (data->wall == 1)
-	{
-		ft_printf("ERROR.This is not an open world map\n");
-		return (1);
-	}
-	if (data->wrong_char == 1)
-	{
-		ft_printf("ERROR.You put a wrong char in the map\n");
-		return (1);
-	}
-
+		exit(ft_printf("ERROR.This is not an open world map\n"));
+	if(data->number_of_teddy < 1)
+		exit(ft_printf("ERROR. You should have one teddy in your room!\n"));
+	if (data->wrong_char > 1)
+		exit(ft_printf("ERROR.You put a wrong char in the map\n"));
 	return (0);
 }
 
@@ -71,7 +57,7 @@ void create_map(char *path, map *data)
 
 	i = 0;
 	get_map_lines(path, data);
-	data->map = ft_calloc(data->row + 1, sizeof(char *));
+	data->map = ft_calloc(sizeof(char *), data->row + 1);
 	if (!data->map)
 		return;
 	data->fd = open(path, O_RDONLY);

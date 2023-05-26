@@ -6,7 +6,7 @@
 /*   By: khabbout <khabbout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 20:11:08 by khabbout          #+#    #+#             */
-/*   Updated: 2023/05/25 14:20:00 by khabbout         ###   ########.fr       */
+/*   Updated: 2023/05/25 19:54:48 by khabbout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdarg.h>
+#include <stdint.h>
 
 /*printf*/
 int ft_printf(const char *s, ...);

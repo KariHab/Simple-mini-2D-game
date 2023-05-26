@@ -17,11 +17,11 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 {
 	char	*s;
 	char	*d;
-	size_t	i;
+	// size_t	i;
 
 	s = (char *)src;
 	d = (char *)dst;
-	i = 0;
+	// i = 0;
 	if (src == NULL || dst == NULL)
 		return (NULL);
 	if (d > s)

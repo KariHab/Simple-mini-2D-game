@@ -18,7 +18,6 @@
 #include <fcntl.h>
 #include <stdlib.h>
 #include <string.h>
-
 #include "../Sources/libft/libft.h"
 #include "../MLX42/include/MLX42/MLX42.h"
 
@@ -28,8 +27,6 @@
 #define FLOOR "./Assets_map/1_Sprites/Floor.png"
 #define TEDDY "./Assets_map/1_Sprites/Teddy.png"
 
-// #define WIDTH 520
-// #define HEIGHT 520
 
 #ifndef BUFFER_SIZE
 #define BUFFER_SIZE 128
