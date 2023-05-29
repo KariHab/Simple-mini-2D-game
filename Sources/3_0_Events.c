@@ -74,6 +74,27 @@ void	move_player_x_axis(map *data, char direction)
 	ft_printf("Moves: %d\n", data->steps_count);
 }
 
+
+
+// void	move_to_left(map *data)
+// {
+// 	if (data->map[data->y_pos_player][data->x_pos_player - 1] == '0'
+// 		|| data->map[data->y_pos_player][data->x_pos_player - 1] == 'C'
+// 		|| data->map[data->y_pos_player][data->x_pos_player - 1] == 'E')
+// 	{
+// 		data->steps_count++;
+// 		ft_print_moves(ms);
+// 		ft_printf("Moves:%d\n", ms->move_count);
+// 		if (ft_check_for_c_and_e(ms, ms->map[ms->player.y]
+// 				[ms->player.x - 1]) == 1)
+// 			return ;
+// 		data->map[data->y_pos_player][data->x_pos_player - 1] = 'P';
+// 		data->map[data->y_pos_player][data->x_pos_player] = '0';
+// 		data->x_pos_player--;
+// 		return ;
+// 	}
+// }
+
 // void handle_collectible(map *data)
 // {
 // 	if (data->map[data->y_pos_player][data->x_pos_player] == 'C')

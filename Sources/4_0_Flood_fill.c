@@ -13,6 +13,33 @@
 
 #include "../Headers/so_long.h"
 
+// void	ft_flood(t_map *ms)
+// {
+// 	if (ms->valid == 0)
+// 	{
+// 		ft_flood_cpy(ms);
+// 		flood_fill(ms->player.y, ms->player.x, ms);
+// 		if (ms->c != ms->flood.collect)
+// 			exit (ft_printf("Error\nSome collectibles can't be reached.\n"));
+// 		if (ms->flood.exit != ms->e)
+// 			exit (ft_printf("Error\nThe exit can't be reached.\n"));
+// 	}
+// 	ft_freeall(ms->flood.map);
+// }
+
+// void	ft_flood_cpy(t_map *ms)
+// {
+// 	int	i;
+
+// 	i = 0;
+// 	ms->flood.map = ft_calloc(ms->row + 1, sizeof(char *));
+// 	while (ms->map[i])
+// 	{
+// 		ms->flood.map[i] = ft_calloc(ms->column + 1, sizeof(char));
+// 		ft_memcpy(ms->flood.map[i], ms->map[i], ms->column + 1);
+// 		i++;
+// 	}
+// }
 // void flood_fill(int x, int y, map *data)
 // {
 //     if (x < 0 || x > data->column - 1 || y < 0 || y > data->row - 1)
