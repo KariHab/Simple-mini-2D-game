@@ -12,9 +12,9 @@
 
 #include "../Headers/so_long.h"
 
-void key_hook_handler(mlx_key_data_t keydata, void *param)
+void	key_hook_handler(mlx_key_data_t keydata, void *param)
 {
-	map *data;
+	map	*data;
 
 	data = param;
 	if (keydata.action == MLX_PRESS || keydata.action == MLX_REPEAT)
@@ -36,7 +36,7 @@ void key_hook_handler(mlx_key_data_t keydata, void *param)
 	}
 }
 
-void move_player_y_axis(map *data, char direction)
+void	move_player_y_axis(map *data, char direction)
 {
 	if (direction == 'w')
 	{
@@ -55,22 +55,14 @@ void move_player_y_axis(map *data, char direction)
 	ft_printf("Moves: %d\n", data->steps_count);
 }
 
-void move_player_x_axis(map *data, char direction)
+void	move_player_x_axis(map *data, char direction)
 {
 	if (direction == 'a')
 	{
-		if (data->map[data->y_pos_player][data->x_pos_player - 1] == '0' 
-		|| data->map[data->y_pos_player][data->x_pos_player - 1] == 'C' 
-		|| data->map[data->y_pos_player][data->x_pos_player - 1] == 'E')
-		{
 			data->map[data->y_pos_player][data->x_pos_player - 1] = 'P';
 			data->map[data->y_pos_player][data->x_pos_player] = '0';
 			data->x_pos_player--;
 			data->steps_count++;
-			// print_moves(data);
-			if (check_teddy_and_bed(data, data->map[data->y_pos_player][data->x_pos_player - 1]) == 1)
-				return ;
-		}
 	}
 	if (direction == 'd')
 	{
@@ -82,29 +74,28 @@ void move_player_x_axis(map *data, char direction)
 	ft_printf("Moves: %d\n", data->steps_count);
 }
 
-
-int check_teddy_and_bed(map *data, char c)
-{
-	if (c == 'C')
-	{
-		data->number_of_teddy--;
-		print_teddy_collected(data);
-		if (data->number_of_teddy == 0)
-			printf("You can go to sleep now!\n");
-	}
-	else if (c == 'E' && data->number_of_teddy != 0)
-	{
-		printf("I still see some of your teddy lying around little girl!\n");
-		return (1);
-	}
-	else if (c == 'E' && data->number_of_teddy == 0)
-	{
-		mlx_close_window(data->mlx);
-		printf("You made it in %d moves!\n", data->steps_count);
-		remove_image(data);
-	}
-	return (0);
-}
+// int check_teddy_and_bed(map *data, char c)
+// {
+// 	if (c == 'C')
+// 	{
+// 		data->number_of_teddy--;
+// 		print_teddy_collected(data);
+// 		if (data->number_of_teddy == 0)
+// 			printf("You can go to sleep now!\n");
+// 	}
+// 	else if (c == 'E' && data->number_of_teddy != 0)
+// 	{
+// 		printf("I still see some of your teddy lying around little girl!\n");
+// 		return (1);
+// 	}
+// 	else if (c == 'E' && data->number_of_teddy == 0)
+// 	{
+// 		mlx_close_window(data->mlx);
+// 		printf("You made it in %d moves!\n", data->steps_count);
+// 		remove_image(data);
+// 	}
+// 	return (0);
+// }
 
 // void handle_collectible(map *data)
 // {
