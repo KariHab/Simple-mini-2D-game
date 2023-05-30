@@ -31,6 +31,7 @@ void	initialize_map(map *data)
     data->exit = 0;
     data->collect = 0;
     data->wrong_char = 0;
+    data->line_count = 0;
 }
 
 void initialize_player(map *data)

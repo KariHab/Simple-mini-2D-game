@@ -13,18 +13,18 @@
 
 #include "../Headers/so_long.h"
 
-// void	ft_flood(t_map *ms)
+// void	flood(map *data)
 // {
-// 	if (ms->valid == 0)
+// 	if (data->valid == 0)
 // 	{
-// 		ft_flood_cpy(ms);
-// 		flood_fill(ms->player.y, ms->player.x, ms);
-// 		if (ms->c != ms->flood.collect)
+// 		ft_flood_cpy(data);
+// 		flood_fill(data->y_pos_player, data->x_pos_player, data);
+// 		if (data->number_of_teddy != data->flood.collect)
 // 			exit (ft_printf("Error\nSome collectibles can't be reached.\n"));
 // 		if (ms->flood.exit != ms->e)
 // 			exit (ft_printf("Error\nThe exit can't be reached.\n"));
 // 	}
-// 	ft_freeall(ms->flood.map);
+// 	free_all(ms->flood.map);
 // }
 
 // void	ft_flood_cpy(t_map *ms)

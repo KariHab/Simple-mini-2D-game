@@ -41,7 +41,7 @@ void	print_moves(map *data)
 
 	move_count = ft_itoa(data->steps_count);
 	mlx_delete_image(data->mlx, data->image.move_nbr);
-	data->image.move_nbr = mlx_put_string(data->mlx, move_count, 70, data->row * 32 + 5);
+	data->image.move_nbr = mlx_put_string(data->mlx, move_count, 10, data->row * 32);
 	free(move_count);
 }
 

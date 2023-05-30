@@ -36,8 +36,8 @@ void count_chars(map *data, int x, int y)
 		data->number_of_exit++;
 	else if (data->map[y][x] == 'C')
 		data->number_of_teddy++;
-	// else if (data->map[y][x] == '0' || data->map[y][x] == '1')
-	// 	return ;
+	else if (data->map[y][x] == '0' || data->map[y][x] == '1')
+		return ;
 	else if (!(data->map[y][x] == 'P' || data->map[y][x] == 'C' || data->map[y][x] == 'E' || data->map[y][x] == '0' || data->map[y][x] == '1'))
 		data->wrong_char++;
 }
@@ -68,6 +68,7 @@ void check_the_wall_around_map(map *data)
 	int y;
 
 	x = 0;
+	ft_printf("column row %d %d\n", data->column, data->row);
 	while (data->map[x])
 	{
 		y = 0;
@@ -89,9 +90,6 @@ void check_the_wall_around_map(map *data)
 // 	int	i;
 
 // 	i = 1;
-// 	if (check_top_bot(0, map) == FAILURE
-// 		|| check_top_bot(line_count, map) == FAILURE)
-// 		return (FAILURE);
 // 	while (i < line_count)
 // 	{
 // 		if (map[i][0] != '1' || map[i][ft_strlen(map[0]) - 2] != '1')
@@ -107,17 +105,14 @@ void check_is_map_rectangle(map *data)
 
 	x = 0;
 	y = 0;
-	// ft_printf("column is %d\n", data->column);
+	ft_printf("column row %d %d\n", data->column, data->row);
 	while (data->map[x])
 	{
-
 		while (data->map[x][y] && data->map[x][y] != '\n')
 			y++;
 		if (y != data->column)
 			data->rectangle = 1;
-		// ft_printf("y is %d\n", y);
 		y = 0;
 		x++;
 	}
-	ft_printf("rectangle: %d\n", data->rectangle);
 }

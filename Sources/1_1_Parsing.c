@@ -15,17 +15,17 @@
 int validate_if_map_is_playable(map *data)
 {
 	if (data->number_of_exit != 1)
-		exit(ft_printf("ERROR.The map should have an exit\n"));
+		exit(ft_printf("ERROR.\nThe map should have an exit\n"));
 	if (data->number_of_player != 1)
-		exit(ft_printf("ERROR.This is a solo game\n"));
+		exit(ft_printf("ERROR.\nThis is a solo game\n"));
 	if (data->rectangle == 1)
-		exit(ft_printf("ERROR.The map should be rectangle\n"));
+		exit(ft_printf("ERROR.\nThe map should be rectangle\n"));
 	if (data->wall == 1)
-		exit(ft_printf("ERROR.This is not an open world map\n"));
-	if(data->number_of_teddy < 1)
-		exit(ft_printf("ERROR. You should have one teddy in your room!\n"));
+		exit(ft_printf("ERROR.\nThis is not an open world map\n"));
+	if (data->number_of_teddy < 1)
+		exit(ft_printf("ERROR.\nYou should have one teddy in your room!\n"));
 	if (data->wrong_char > 1)
-		exit(ft_printf("ERROR.You put a wrong char in the map\n"));
+		exit(ft_printf("ERROR.\nYou put a wrong char in the map\n"));
 	return (0);
 }
 
@@ -54,16 +54,18 @@ map *get_map_lines(char *path, map *data)
 void create_map(char *path, map *data)
 {
 	int i;
+	int fd;
 
 	i = 0;
+	fd = 0;
 	get_map_lines(path, data);
 	data->map = ft_calloc(sizeof(char *), data->row + 1);
 	if (!data->map)
 		return;
-	data->fd = open(path, O_RDONLY);
-	while (data->fd > 2)
+	fd = open(path, O_RDONLY);
+	while (fd > 2)
 	{
-		data->map[i] = get_next_line(data->fd);
+		data->map[i] = get_next_line(fd);
 		if (data->map[i] == NULL)
 			break;
 		if (data->map[i][0] == '\n')
@@ -72,15 +74,18 @@ void create_map(char *path, map *data)
 			data->map[i][ft_strlen(data->map[i]) - 1] = '\0';
 		i++;
 	}
-	close(data->fd);
+	close(fd);
 }
 
 void parsing(char *path, map *data)
 {
 	create_map(path, data);
+	ft_printf("Rect: %d\n", data->rectangle);
 	count_objects(data);
 	data->column = ft_strlen(data->map[0]);
+	ft_printf("column row %d %d\n", data->column, data->row);
 	check_is_map_rectangle(data);
+	ft_printf("Rect: %d\n", data->rectangle);
 	check_the_wall_around_map(data);
 	validate_if_map_is_playable(data);
 	// flood(data);
