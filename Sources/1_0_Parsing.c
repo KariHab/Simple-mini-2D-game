@@ -71,7 +71,7 @@ void check_the_wall_around_map(map *data)
 	while (data->map[x])
 	{
 		y = 0;
-		while (data->map[x][y])
+		while (data->map[x][y] && data->map[x][y] != '\n')
 		{
 			if (data->map[0][y] != '1' || data->map[x][0] != '1' ||
 				data->map[data->row - 1][y] != '1' ||
@@ -81,21 +81,8 @@ void check_the_wall_around_map(map *data)
 		}
 		x++;
 	}
+	ft_printf("wall: %d\n", data->wall);
 }
-
-// int	check_top_bot(int row, char **map)
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	while (map[row][i] && map[row][i] != '\n')
-// 	{
-// 		if (map[row][i] != '1')
-// 			return (FAILURE);
-// 		i++;
-// 	}
-// 	return (SUCCESS);
-// }
 
 // int	check_edges(int line_count, char **map)
 // {
@@ -120,7 +107,7 @@ void check_is_map_rectangle(map *data)
 
 	x = 0;
 	y = 0;
-	ft_printf("column is %d\n", data->column);
+	// ft_printf("column is %d\n", data->column);
 	while (data->map[x])
 	{
 
@@ -128,8 +115,9 @@ void check_is_map_rectangle(map *data)
 			y++;
 		if (y != data->column)
 			data->rectangle = 1;
-		ft_printf("y is %d\n", y);
+		// ft_printf("y is %d\n", y);
 		y = 0;
 		x++;
 	}
+	ft_printf("rectangle: %d\n", data->rectangle);
 }

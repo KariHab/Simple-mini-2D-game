@@ -113,5 +113,4 @@ void	print_teddy_collected(map *data);
 // void flood(map *data);
 // void    flood_fill(int x, int y, map *data);
 // void handle_collectible(map *data);
-
 #endif

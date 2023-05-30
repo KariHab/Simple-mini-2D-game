@@ -26,6 +26,11 @@ void	initialize_map(map *data)
     data->map = NULL;
     data->x_pos_player = 0;
     data->y_pos_player = 0;
+    data->wall = 0;
+    data->rectangle = 0;
+    data->exit = 0;
+    data->collect = 0;
+    data->wrong_char = 0;
 }
 
 void initialize_player(map *data)
