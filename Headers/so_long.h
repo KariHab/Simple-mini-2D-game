@@ -114,7 +114,6 @@ void count_chars(map *data, int x, int y);
 void count_objects(map *data);
 void key_hook_handler(mlx_key_data_t keydata, void *param);
 void move_player(map *data, char direction);
-// void move_player_y_axis(map *data, char direction);
 void print_collected_and_moves(map *data);
 void print_moves(map *data);
 void print_teddy_collected(map *data);
@@ -122,4 +121,5 @@ int check_teddy_and_bed(map *data, char c);
 void flood(map *data);
 void flood_fill(int x, int y, map *data);
 void ft_flood_cpy(map *data);
+int check_tile(char c);
 #endif
