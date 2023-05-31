@@ -49,7 +49,7 @@ void	print_teddy_collected(map *data)
 {
 	char	*teddy_collected;
 
-	teddy_collected = ft_itoa(data->number_of_teddy_collected);
+	teddy_collected = ft_itoa(data->number_of_teddy);
 	mlx_delete_image(data->mlx, data->image.collected_nbr);
 	data->image.collected_nbr = mlx_put_string(data->mlx, teddy_collected, 202, data->row * 32 + 25);
 	if (data->number_of_teddy == 0)

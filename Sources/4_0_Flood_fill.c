@@ -17,13 +17,9 @@ void flood(map *data)
     if (data->valid == 0)
     {
         ft_flood_cpy(data);
-        // printf("%d %d\n", data->flood.collect, data->number_of_teddy);
-        printf("exit mesured%d exit real%d\n", data->flood.exit, data->number_of_exit);
         flood_fill(data->y_pos_player, data->x_pos_player, data);
-        // printf("after%d %d\n", data->flood.collect, data->number_of_teddy);
-        printf("after exit mesured %d exit real%d\n", data->flood.exit, data->number_of_exit);
         if (data->number_of_teddy != data->flood.collect)
-            exit(ft_printf("Error\nSome collectibles can't be reached.\n"));
+            exit(ft_printf("Error\nSome teddys can't be reached.\n"));
         if (data->flood.exit != data->number_of_exit)
             exit(ft_printf("Error\nThe exit can't be reached.\n"));
     }
@@ -53,22 +49,10 @@ void flood_fill(int x, int y, map *data)
     if (data->flood.map[y][x] == 'C')
         data->flood.collect++;
     if (data->flood.map[y][x] == 'E')
-        data->exit++;
+        data->flood.exit++;
     data->flood.map[y][x] = 'Z';
     flood_fill(x + 1, y, data);
     flood_fill(x - 1, y, data);
     flood_fill(x, y + 1, data);
     flood_fill(x, y - 1, data);
 }
-
-// int check_tile(map *data, char direction, char tile)
-
-// {
-//     if ((direction == 'w' && data->map[data->y_position_player - 1][data->x_position_player] == tile)
-//     || (direction == 's' && data->map[data->y_position_player + 1][data->x_position_player] == tile)
-//     || (direction == 'a' && data->map[data->y_position_player][data->x_position_player - 1] == tile)
-//     || (direction == 'd' && data->map[data->y_position_player][data->x_position_player + 1] == tile))
-//         return (0);
-//     else
-//         return (-1);
-// }

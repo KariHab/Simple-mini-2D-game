@@ -80,15 +80,10 @@ void create_map(char *path, map *data)
 void parsing(char *path, map *data)
 {
 	create_map(path, data);
-	// ft_printf("Rect: %d\n", data->rectangle);
 	count_objects(data);
 	data->column = ft_strlen(data->map[0]);
-	// ft_printf("column row %d %d\n", data->column, data->row);
-	printf("exit is%d\n", data->number_of_exit);
 	check_is_map_rectangle(data);
-	// ft_printf("Rect: %d\n", data->rectangle);
 	check_the_wall_around_map(data);
 	validate_if_map_is_playable(data);
-	// ft_printf("%d", data->wrong_char);
 	flood(data);
 }

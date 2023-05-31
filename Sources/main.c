@@ -26,8 +26,6 @@ int main(int ac, char **av)
         initialize_map(&data);
         parsing(av[1], &data);
         initialize_player(&data);
-        // ft_printf("Teddy  to collect %d\n", data.number_of_teddy);
-        // ft_printf("Teddy collected %d\n", data.number_of_teddy_collected);
         render(&data);
         mlx_terminate(data.mlx);
         free_all(data.map);
