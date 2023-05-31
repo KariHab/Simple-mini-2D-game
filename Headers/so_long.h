@@ -27,7 +27,6 @@
 #define FLOOR "./Assets_map/1_Sprites/Floor.png"
 #define TEDDY "./Assets_map/1_Sprites/Teddy.png"
 
-
 #ifndef BUFFER_SIZE
 #define BUFFER_SIZE 128
 #endif
@@ -55,18 +54,24 @@ typedef struct image
 
 } t_image;
 
+typedef struct flood
+{
+    char **map;
+    int collect;
+    int exit;
+} t_flood;
+
 typedef struct map
 {
     mlx_t *mlx;
     mlx_image_t *img;
     char **map;
     size_t line_length;
-    int line_count;
+    // int line_count;
     int fd;
     int number_of_player;
     int number_of_teddy;
     int number_of_exit;
-    int number_of_teddy_collected;
     int row;
     int column;
     int rectangle;
@@ -75,11 +80,13 @@ typedef struct map
     int x_pos_player;
     int y_pos_player;
     int exit;
+    int valid;
     int collect;
     int wrong_char;
     t_texture texture;
     t_image image;
     t_image old_version;
+    t_flood flood;
 
 } map;
 
@@ -107,11 +114,13 @@ void count_objects(map *data);
 void key_hook_handler(mlx_key_data_t keydata, void *param);
 void move_player_x_axis(map *data, char direction);
 void move_player_y_axis(map *data, char direction);
-void  print_collected_and_moves(map *data);
-void	print_moves(map *data);
-void	print_teddy_collected(map *data);
+void print_collected_and_moves(map *data);
+void print_moves(map *data);
+void print_teddy_collected(map *data);
 int check_teddy_and_bed(map *data, char c);
-// void flood(map *data);
-// void    flood_fill(int x, int y, map *data);
+void flood(map *data);
+void flood_fill(int x, int y, map *data);
+void ft_flood_cpy(map *data);
+
 // void handle_collectible(map *data);
 #endif

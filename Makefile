@@ -4,8 +4,8 @@ LIBMLX	:= MLX42
 CC		:= gcc
 
 HEADERS	:= -I ./include -I $(LIBMLX)/include
-LIBS	:= $(LIBMLX)/build/libmlx42.a -ldl -lglfw -L "/Users/$(USER)/.brew/opt/glfw/lib/" -pthread -lm -framework Cocoa -framework OpenGL -framework IOKit
-# LIBS	:= $(LIBMLX)/build/libmlx42.a -ldl -lglfw -pthread -lm
+# LIBS	:= $(LIBMLX)/build/libmlx42.a -ldl -lglfw -L "/Users/$(USER)/.brew/opt/glfw/lib/" -pthread -lm -framework Cocoa -framework OpenGL -framework IOKit
+LIBS	:= $(LIBMLX)/build/libmlx42.a -ldl -lglfw -pthread -lm
 SRCS	:= $(shell find ./Sources -iname "*.c")
 OBJS	:= ${SRCS:.c=.o}
 
