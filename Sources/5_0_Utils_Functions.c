@@ -28,33 +28,15 @@ void	free_all(char **tab)
 	return ;
 }
 
-void  print_collected_and_moves(map *data)
-{
-	mlx_delete_image(data->mlx, data->image.move);
-	data->image.move = mlx_put_string(data->mlx, "Moves:", 3, data->row * 32 + 25);
-	data->image.teddy = mlx_put_string(data->mlx, "Teddy left to collect:", 3, data->row *32 + 25);
-}
-
 void	print_moves(map *data)
 {
-	char	*move_count;
-
-	move_count = ft_itoa(data->steps_count);
-	mlx_delete_image(data->mlx, data->image.move_nbr);
-	data->image.move_nbr = mlx_put_string(data->mlx, move_count, 10, data->row * 32);
-	free(move_count);
+	if (data->steps_count == 1)
+		ft_printf("%d move\n", data->steps_count);
+	else
+		ft_printf("%d moves\n", data->steps_count);
 }
 
-void	print_teddy_collected(map *data)
+void	print_teddy(map *data)
 {
-	char	*teddy_collected;
-
-	teddy_collected = ft_itoa(data->number_of_teddy);
-	mlx_delete_image(data->mlx, data->image.collected_nbr);
-	data->image.collected_nbr = mlx_put_string(data->mlx, teddy_collected, 202, data->row * 32 + 25);
-	if (data->number_of_teddy == 0)
-	{
-		data->image.collected_nbr = mlx_put_string(data->mlx, " to collect...You can go home now!", 212, data->row * 32 + 25);
-	}
-	free(teddy_collected);
+		ft_printf("You have %d teddy-bears left to collect\n", (data->number_of_teddy - data->collected));
 }

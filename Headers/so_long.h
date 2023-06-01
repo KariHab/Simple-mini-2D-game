@@ -112,13 +112,13 @@ void count_chars(map *data, int x, int y);
 void count_objects(map *data);
 void key_hook_handler(mlx_key_data_t keydata, void *param);
 void move_player(map *data, char direction);
-void print_collected_and_moves(map *data);
-void print_moves(map *data);
-void print_teddy_collected(map *data);
 void flood(map *data);
 void flood_fill(int x, int y, map *data);
 void ft_flood_cpy(map *data);
-int check_tile(char c);
+int	check_tile_not_wall(char c);
+int	check_next_tile(map *data, char direction, char tile);
 void end_of_game(map *data);
+void	print_moves(map *data);
+void	print_teddy(map *data);
 
 #endif

@@ -13,13 +13,23 @@
 #include "../Headers/so_long.h"
 
 // faire une ft pour check la tile suivante et couper les lines
-int	check_tile(char c)
+int	check_tile_not_wall(char c)
 {
 	if (c == '0' || c == 'C' || c == 'E')
 		return (0);
 	return (1);
 }
 
+int	check_next_tile(map *data, char direction, char tile)
+{
+	if ((direction == 'd' && data->map[data->y_pos_player][data->x_pos_player + 1] == tile)
+		|| (direction == 'a' && data->map[data->y_pos_player][data->x_pos_player - 1] == tile)
+		|| (direction == 's' && data->map[data->y_pos_player + 1][data->x_pos_player] == tile)
+		|| (direction == 'w' && data->map[data->y_pos_player - 1][data->x_pos_player] == tile))
+		return (0);
+	else
+		return (1);
+}
 void	key_hook_handler(mlx_key_data_t keydata, void *param)
 {
 	map	*data;
@@ -28,19 +38,19 @@ void	key_hook_handler(mlx_key_data_t keydata, void *param)
 	if (keydata.action == MLX_PRESS || keydata.action == MLX_REPEAT)
 	{
 		if ((keydata.key == MLX_KEY_W || keydata.key == MLX_KEY_UP))
-			if (check_tile(data->map[data->y_pos_player - 1]
+			if (check_tile_not_wall(data->map[data->y_pos_player - 1]
 					[data->x_pos_player]) == 0)
 				move_player(data, 'w');
 		if ((keydata.key == MLX_KEY_S || keydata.key == MLX_KEY_DOWN))
-			if (check_tile(data->map[data->y_pos_player + 1]
+			if (check_tile_not_wall(data->map[data->y_pos_player + 1]
 					[data->x_pos_player]) == 0)
 				move_player(data, 's');
 		if ((keydata.key == MLX_KEY_D || keydata.key == MLX_KEY_RIGHT))
-			if (check_tile(data->map[data->y_pos_player]
+			if (check_tile_not_wall(data->map[data->y_pos_player]
 					[data->x_pos_player + 1]) == 0)
 				move_player(data, 'd');
 		if ((keydata.key == MLX_KEY_A || keydata.key == MLX_KEY_LEFT))
-			if (check_tile(data->map[data->y_pos_player]
+			if (check_tile_not_wall(data->map[data->y_pos_player]
 					[data->x_pos_player - 1]) == 0)
 				move_player(data, 'a');
 		if (keydata.key == MLX_KEY_ESCAPE)
@@ -55,10 +65,13 @@ void collect_teddy(map *data, char direction)
 			|| (direction == 'w' && data->map[data->y_pos_player - 1][data->x_pos_player] == 'C')
 			|| (direction == 's' && data->map[data->y_pos_player + 1][data->x_pos_player] == 'C'))
 			data->collected++;
+	print_teddy(data);
 }
 
 void	move_player(map *data, char direction)
 {
+	if ((data->can_exit == 0 && check_next_tile(data, direction, 'E') == 0))
+			return;
 	data->steps_count++;
 	collect_teddy(data, direction);
 	if(data->collected == data->number_of_teddy)
@@ -72,7 +85,7 @@ void	move_player(map *data, char direction)
 		data->x_pos_player--;
 	if (direction == 'd')
 		data->x_pos_player++;
-	ft_printf("Moves: %d\n", data->steps_count);
+	print_moves(data);
 	if (data->can_exit == 1 && data->map[data->y_pos_player][data->x_pos_player] == 'E')
 		end_of_game(data);
 	data->map[data->y_pos_player][data->x_pos_player] = 'P';
@@ -84,7 +97,7 @@ void	end_of_game(map *data)
 	if (data->can_exit == 1)
 	{
 		mlx_close_window(data->mlx);
-		ft_printf("You did: %d steps\n", data->steps_count);
+		ft_printf("You did: %d moves\n", data->steps_count);
 		ft_printf("Good job! Now you can go to sleep!\n");
 		remove_image(data);
 	}
