@@ -14,15 +14,12 @@
 
 void flood(map *data)
 {
-    if (data->valid == 0)
-    {
         ft_flood_cpy(data);
         flood_fill(data->y_pos_player, data->x_pos_player, data);
         if (data->number_of_teddy != data->flood.collect)
             exit(ft_printf("Error\nSome teddys can't be reached.\n"));
         if (data->flood.exit != data->number_of_exit)
             exit(ft_printf("Error\nThe exit can't be reached.\n"));
-    }
     free_all(data->flood.map);
 }
 

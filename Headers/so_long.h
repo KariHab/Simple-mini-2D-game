@@ -67,9 +67,7 @@ typedef struct map
     mlx_image_t *img;
     char **map;
     size_t line_length;
-    // int line_count;
     int fd;
-    int can_exit;
     int number_of_player;
     int number_of_teddy;
     int number_of_exit;
@@ -81,8 +79,8 @@ typedef struct map
     int x_pos_player;
     int y_pos_player;
     int exit;
-    int valid;
-    int collect;
+    int collected;
+    int can_exit;
     int wrong_char;
     t_texture texture;
     t_image image;
@@ -117,9 +115,10 @@ void move_player(map *data, char direction);
 void print_collected_and_moves(map *data);
 void print_moves(map *data);
 void print_teddy_collected(map *data);
-int check_teddy_and_bed(map *data, char c);
 void flood(map *data);
 void flood_fill(int x, int y, map *data);
 void ft_flood_cpy(map *data);
 int check_tile(char c);
+void end_of_game(map *data);
+
 #endif
