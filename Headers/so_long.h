@@ -31,6 +31,14 @@
 #define BUFFER_SIZE 128
 #endif
 
+/* Colors*/
+#define RED "\033[0;31m"
+#define GREEN "\033[0;32m"
+#define WHITE "\033[0;37m"
+#define CYAN "\033[0;36m"
+#define PURPLE "\033[0;35m"
+// #define PEACH "\033[38;5;217m"
+
 typedef struct texture
 {
     mlx_texture_t *wall;

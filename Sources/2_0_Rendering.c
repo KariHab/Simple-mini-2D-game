@@ -42,7 +42,6 @@ void create_the_map_render(void *param)
 	remove_image(data);
 	data->old_version = data->image;
 	create_image(data);
-	// ft_print_moves_and_collect(ms);
 	while (y < data->row)
 	{
 		x = 0;

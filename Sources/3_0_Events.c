@@ -64,8 +64,10 @@ void collect_teddy(map *data, char direction)
 			|| (direction == 'a' && data->map[data->y_pos_player][data->x_pos_player - 1] == 'C')
 			|| (direction == 'w' && data->map[data->y_pos_player - 1][data->x_pos_player] == 'C')
 			|| (direction == 's' && data->map[data->y_pos_player + 1][data->x_pos_player] == 'C'))
-			data->collected++;
-	print_teddy(data);
+			{
+				data->collected++;
+				print_teddy(data);
+			}
 }
 
 void	move_player(map *data, char direction)
@@ -97,8 +99,7 @@ void	end_of_game(map *data)
 	if (data->can_exit == 1)
 	{
 		mlx_close_window(data->mlx);
-		ft_printf("You did: %d moves\n", data->steps_count);
-		ft_printf("Good job! Now you can go to sleep!\n");
+		ft_printf(GREEN"You did: %d moves\n"WHITE, data->steps_count);
 		remove_image(data);
 	}
 		

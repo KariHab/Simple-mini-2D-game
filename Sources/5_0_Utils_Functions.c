@@ -10,12 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "../Headers/so_long.h"
 
-void	free_all(char **tab)
+void free_all(char **tab)
 {
-	int	i;
+	int i;
 
 	i = 0;
 	while (tab[i])
@@ -25,18 +24,21 @@ void	free_all(char **tab)
 	}
 	free(tab);
 	tab = NULL;
-	return ;
+	return;
 }
 
-void	print_moves(map *data)
+void print_moves(map *data)
 {
 	if (data->steps_count == 1)
-		ft_printf("%d move\n", data->steps_count);
+		ft_printf(PURPLE"%d move\n"WHITE, data->steps_count);
 	else
-		ft_printf("%d moves\n", data->steps_count);
+		ft_printf(PURPLE"%d moves\n"WHITE, data->steps_count);
 }
 
-void	print_teddy(map *data)
+void print_teddy(map *data)
 {
-		ft_printf("You have %d teddy-bears left to collect\n", (data->number_of_teddy - data->collected));
+	if (data->number_of_teddy == data->collected)
+		ft_printf(GREEN"Good girl! You're done collecting now go to sleep!\n"WHITE);
+	else
+		ft_printf(CYAN"Collected: %d. Left to collect %d\n"WHITE, data->collected, (data->number_of_teddy - data->collected));
 }
