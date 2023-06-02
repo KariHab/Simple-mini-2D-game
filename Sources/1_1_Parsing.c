@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../Headers/so_long.h"
+#include "../so_long.h"
 
 int validate_if_map_is_playable(map *data)
 {
@@ -37,14 +37,14 @@ map *get_map_lines(char *path, map *data)
 	fd = open(path, O_RDONLY);
 	// if (fd < 0)
 	// 	exit(ft_printf(RED"ERROR.\nOpen failed. Check the map you want to open\n"WHITE));
-	while(1)
+	while (1)
 	{
 		str = get_next_line(fd);
 		if (str == NULL)
 			break;
 		free(str);
 		// str = get_next_line(fd);
-		data->row++;	
+		data->row++;
 	}
 	close(fd);
 	return (data);
@@ -72,7 +72,7 @@ void create_map(char *path, map *data)
 			data->map[i][ft_strlen(data->map[i]) - 1] = '\0';
 		i++;
 	}
-	if(fd < 3)
+	if (fd < 3)
 		exit(ft_printf("Error.\nWrong file\n"));
 	close(fd);
 }
@@ -80,7 +80,8 @@ void create_map(char *path, map *data)
 void parsing(char *path, map *data)
 {
 	create_map(path, data);
-	count_objects(data);
+	count_chars(data);
+	// count_objects(data);
 	data->column = ft_strlen(data->map[0]);
 	check_is_map_rectangle(data);
 	check_the_wall_around_map(data);

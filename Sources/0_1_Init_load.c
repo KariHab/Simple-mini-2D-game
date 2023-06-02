@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 
-#include "../Headers/so_long.h"
+#include "../so_long.h"
 
 void	initialize_map(map *data)
 {
@@ -29,9 +29,9 @@ void	initialize_map(map *data)
     data->rectangle = 0;
     data->exit = 0;
     data->wrong_char = 0;
-    // data->flood.collect = 0;
-    // data->flood.exit = 0;
-    // data->flood.map = NULL;
+    data->flood.collect = 0;
+    data->flood.exit = 0;
+    data->flood.map = NULL;
     data->image.collected_nbr = 0;
     data->image.move_nbr = 0;
     data->image.move = 0;

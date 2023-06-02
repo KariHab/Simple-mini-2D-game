@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../Headers/so_long.h"
+#include "../so_long.h"
 
 void free_all(char **tab)
 {
@@ -41,4 +41,14 @@ void print_teddy(map *data)
 		ft_printf(GREEN"Good girl! You're done collecting now go to sleep!\n"WHITE);
 	else
 		ft_printf(CYAN"Collected: %d. Left to collect %d\n"WHITE, data->collected, (data->number_of_teddy - data->collected));
+}
+
+void	end_of_game(map *data)
+{
+	if (data->can_exit == 1)
+	{
+		mlx_close_window(data->mlx);
+		ft_printf(GREEN"You did: %d moves\n"WHITE, data->steps_count);
+		remove_image(data);
+	}		
 }

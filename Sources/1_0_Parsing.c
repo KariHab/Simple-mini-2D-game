@@ -10,59 +10,81 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../Headers/so_long.h"
+#include "../so_long.h"
 
 int check_extension_map_file(char *map_file_name)
 {
 	size_t len;
 
 	len = ft_strlen(map_file_name);
-	if (((len > 4) && map_file_name[len - 4] == '.' 
-			&& map_file_name[len - 3] == 'b' 
-			&& map_file_name[len - 2] == 'e' 
-			&& map_file_name[len - 1] == 'r'))
+	if (((len > 4) && map_file_name[len - 4] == '.' && map_file_name[len - 3] == 'b' && map_file_name[len - 2] == 'e' && map_file_name[len - 1] == 'r'))
 		return (0);
 	else
 		return (-1);
 }
 
+// /*get the number of 0 1 P E and C*/
+// void count_chars(map *data, int x, int y)
+// {
+// 	if (data->map[y][x] == 'P')
+// 	{
+// 		data->number_of_player++;
+// 		data->x_pos_player = x;
+// 		data->y_pos_player = y;
+// 	}
+// 	else if (data->map[y][x] == 'E')
+// 		data->number_of_exit++;
+// 	else if (data->map[y][x] == 'C')
+// 		data->number_of_teddy++;
+// 	else if (data->map[y][x] == '0' || data->map[y][x] == '1')
+// 		return ;
+// 	else
+// 		data->wrong_char++;
+// }
+
 /*get the number of 0 1 P E and C*/
-void count_chars(map *data, int x, int y)
+void count_chars(map *data)
 {
-	if (data->map[y][x] == 'P')
-	{
-		data->number_of_player++;
-		data->x_pos_player = x;
-		data->y_pos_player = y;
-	}
-	else if (data->map[y][x] == 'E')
-		data->number_of_exit++;
-	else if (data->map[y][x] == 'C')
-		data->number_of_teddy++;
-	else if (data->map[y][x] == '0' || data->map[y][x] == '1')
-		return ;
-	else
-		data->wrong_char++;
-}
+	int i;
+	int j;
 
-void count_objects(map *data)
-{
-	int x;
-	int y;
-
-	y = 0;
-	x = 0;
-	while (data->map[y])
+	i = 0;
+	j = 0;
+	while (data->map[i])
 	{
-		x = 0;
-		while (data->map[y][x])
+		while (data->map[i][j])
 		{
-			count_chars(data, x, y);
-			x++;
+			if (data->map[i][j] == 'P')
+				data->number_of_player++;
+			else if (data->map[i][j] == 'C')
+				data->number_of_teddy++;
+			else if (data->map[i][j] == 'E')
+				data->number_of_exit++;
+			j++;
 		}
-		y++;
+		j = 0;
+		i++;
 	}
 }
+
+// void count_objects(map *data)
+// {
+// 	int x;
+// 	int y;
+
+// 	y = 0;
+// 	x = 0;
+// 	while (data->map[y])
+// 	{
+// 		x = 0;
+// 		while (data->map[y][x])
+// 		{
+// 			count_chars(data, x, y);
+// 			x++;
+// 		}
+// 		y++;
+// 	}
+// }
 
 void check_the_wall_around_map(map *data)
 {

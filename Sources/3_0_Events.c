@@ -10,9 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../Headers/so_long.h"
+#include "../so_long.h"
 
-// faire une ft pour check la tile suivante et couper les lines
 int	check_tile_not_wall(char c)
 {
 	if (c == '0' || c == 'C' || c == 'E')
@@ -30,6 +29,7 @@ int	check_next_tile(map *data, char direction, char tile)
 	else
 		return (1);
 }
+
 void	key_hook_handler(mlx_key_data_t keydata, void *param)
 {
 	map	*data;
@@ -91,16 +91,4 @@ void	move_player(map *data, char direction)
 	if (data->can_exit == 1 && data->map[data->y_pos_player][data->x_pos_player] == 'E')
 		end_of_game(data);
 	data->map[data->y_pos_player][data->x_pos_player] = 'P';
-	
-}
-
-void	end_of_game(map *data)
-{
-	if (data->can_exit == 1)
-	{
-		mlx_close_window(data->mlx);
-		ft_printf(GREEN"You did: %d moves\n"WHITE, data->steps_count);
-		remove_image(data);
-	}
-		
 }
