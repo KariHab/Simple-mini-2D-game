@@ -35,16 +35,17 @@ map *get_map_lines(char *path, map *data)
 	int fd;
 
 	fd = open(path, O_RDONLY);
-	// if (fd < 0)
-	// 	exit(ft_printf(RED"ERROR.\nOpen failed. Check the map you want to open\n"WHITE));
-	while (1)
+	if (fd < 0)
+		exit(ft_printf(RED "ERROR.\nOpen failed. Check the map you want to open\n" WHITE));
+	else
 	{
 		str = get_next_line(fd);
-		if (str == NULL)
-			break;
-		free(str);
-		// str = get_next_line(fd);
-		data->row++;
+		while (str != NULL)
+		{
+			data->row++;
+			free(str);
+			str = get_next_line(fd);
+		}
 	}
 	close(fd);
 	return (data);
@@ -61,10 +62,10 @@ void create_map(char *path, map *data)
 	if (!data->map)
 		return;
 	fd = open(path, O_RDONLY);
-	while (fd > 2)
+	while (fd > 0)
 	{
 		data->map[i] = get_next_line(fd);
-		if (data->map[i] == NULL)
+		if (!data->map[i])
 			break;
 		if (data->map[i][0] == '\n')
 			data->rectangle = 1;
@@ -72,8 +73,8 @@ void create_map(char *path, map *data)
 			data->map[i][ft_strlen(data->map[i]) - 1] = '\0';
 		i++;
 	}
-	if (fd < 3)
-		exit(ft_printf(RED "Error.\nWrong file\n" WHITE));
+	if (fd < 0)
+		exit(ft_printf(RED "ERROR.\nOpen failed. Check the map you want to open\n" WHITE));
 	close(fd);
 }
 

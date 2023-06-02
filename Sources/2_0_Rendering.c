@@ -14,20 +14,20 @@
 
 void remove_texture(map *data)
 {
-	mlx_delete_texture(data->texture.wall);
-	mlx_delete_texture(data->texture.floor);
-	mlx_delete_texture(data->texture.exit);
-	mlx_delete_texture(data->texture.player);
-	mlx_delete_texture(data->texture.teddy);
+    mlx_delete_texture(data->texture.wall);
+    mlx_delete_texture(data->texture.floor);
+    mlx_delete_texture(data->texture.exit);
+    mlx_delete_texture(data->texture.player);
+    mlx_delete_texture(data->texture.teddy);
 }
 
 void load_texture(map *data)
 {
-	data->texture.wall = mlx_load_png(WALL);
-	data->texture.teddy = mlx_load_png(TEDDY);
-	data->texture.player = mlx_load_png(PLAYER);
-	data->texture.floor = mlx_load_png(FLOOR);
-	data->texture.exit = mlx_load_png(EXIT);
+    data->texture.wall = mlx_load_png(WALL);
+    data->texture.teddy = mlx_load_png(TEDDY);
+    data->texture.player = mlx_load_png(PLAYER);
+    data->texture.floor = mlx_load_png(FLOOR);
+    data->texture.exit = mlx_load_png(EXIT);
 }
 
 void create_image(map *data)

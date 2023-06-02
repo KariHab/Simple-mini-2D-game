@@ -10,10 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "../so_long.h"
 
-void	initialize_map(map *data)
+void initialize_map(map *data)
 {
     data->row = 0;
     data->column = 0;
@@ -38,7 +37,6 @@ void	initialize_map(map *data)
     data->collected = 0;
     data->can_exit = 0;
 }
-
 
 void initialize_player(map *data)
 {

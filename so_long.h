@@ -75,7 +75,7 @@ typedef struct map
     mlx_image_t *img;
     char **map;
     size_t line_length;
-    int fd;
+    // int fd;
     int number_of_player;
     int number_of_teddy;
     int number_of_exit;

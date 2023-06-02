@@ -14,17 +14,17 @@
 
 mlx_image_t *load_image(char c, map *data)
 {
-    if (c == '1')
-        return (data->image.wall);
-    if (c == '0')
-        return (data->image.floor);
-    if (c == 'P')
-        return (data->image.player);
-    if (c == 'E')
-        return (data->image.exit);
-    if (c == 'C')
-        return (data->image.teddy);
-    return (0);
+	if (c == '1')
+		return (data->image.wall);
+	if (c == '0')
+		return (data->image.floor);
+	if (c == 'P')
+		return (data->image.player);
+	if (c == 'E')
+		return (data->image.exit);
+	if (c == 'C')
+		return (data->image.teddy);
+	return (0);
 }
 
 void create_the_map_render(void *param)
