@@ -1,5 +1,5 @@
 NAME	:= so_long
-CFLAGS	:= -Wextra -Wall -Werror -Wunreachable-code -Ofast
+CFLAGS	:= -Wextra -Wall -Wunreachable-code -Ofast
 LIBMLX	:= MLX42
 CC		:= gcc
 

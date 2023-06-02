@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "../Headers/so_long.h"
 
 void remove_texture(map *data)
@@ -57,7 +56,7 @@ void create_the_map_render(void *param)
 
 void render(map *data)
 {
-	data->mlx = mlx_init(data->column * 32, data->row * 32, "Grab your teddy and go to sleep!", false);
+	data->mlx = mlx_init(data->column * 32, data->row * 32, "Grab all your teddy and go to sleep!", false);
 	if (!data->mlx)
 		exit(EXIT_FAILURE);
 	load_texture(data);

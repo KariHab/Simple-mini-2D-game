@@ -21,23 +21,21 @@
 #include "../Sources/libft/libft.h"
 #include "../MLX42/include/MLX42/MLX42.h"
 
-#define PLAYER "./Assets_map/1_Sprites/Player.png"
-#define EXIT "./Assets_map/1_Sprites/Bed_Exit.png"
-#define WALL "./Assets_map/1_Sprites/Wall.png"
-#define FLOOR "./Assets_map/1_Sprites/Floor.png"
-#define TEDDY "./Assets_map/1_Sprites/Teddy.png"
+#define PLAYER "./Assets_map/Sprites/Player.png"
+#define EXIT "./Assets_map/Sprites/Bed_Exit.png"
+#define WALL "./Assets_map/Sprites/Wall.png"
+#define FLOOR "./Assets_map/Sprites/Floor.png"
+#define TEDDY "./Assets_map/Sprites/Teddy.png"
 
 #ifndef BUFFER_SIZE
 #define BUFFER_SIZE 128
 #endif
 
-/* Colors*/
 #define RED "\033[0;31m"
 #define GREEN "\033[0;32m"
 #define WHITE "\033[0;37m"
 #define CYAN "\033[0;36m"
 #define PURPLE "\033[0;35m"
-// #define PEACH "\033[38;5;217m"
 
 typedef struct texture
 {
@@ -62,12 +60,12 @@ typedef struct image
 
 } t_image;
 
-typedef struct flood
-{
-    char **map;
-    int collect;
-    int exit;
-} t_flood;
+// typedef struct flood
+// {
+//     char **map;
+//     int collect;
+//     int exit;
+// } t_flood;
 
 typedef struct map
 {
@@ -93,7 +91,7 @@ typedef struct map
     t_texture texture;
     t_image image;
     t_image old_version;
-    t_flood flood;
+    // t_flood flood;
 
 } map;
 
@@ -120,9 +118,9 @@ void count_chars(map *data, int x, int y);
 void count_objects(map *data);
 void key_hook_handler(mlx_key_data_t keydata, void *param);
 void move_player(map *data, char direction);
-void flood(map *data);
-void flood_fill(int x, int y, map *data);
-void ft_flood_cpy(map *data);
+// void flood(map *data);
+// void flood_fill(int x, int y, map *data);
+// void ft_flood_cpy(map *data);
 int	check_tile_not_wall(char c);
 int	check_next_tile(map *data, char direction, char tile);
 void end_of_game(map *data);

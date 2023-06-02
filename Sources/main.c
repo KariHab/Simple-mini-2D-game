@@ -17,12 +17,11 @@ int main(int ac, char **av)
     map data;
 
     if (ac != 2)
-        ft_printf("Invalid number of args\n");
+        ft_printf(RED"Invalid number of args\n"WHITE);
     if (ac == 2)
     {
-
         if (check_extension_map_file(av[1]) == -1)
-            ft_printf("Format file is not .ber\n");
+            exit(ft_printf(RED"Format file is not .ber\n"WHITE));
         initialize_map(&data);
         parsing(av[1], &data);
         initialize_player(&data);

@@ -29,15 +29,16 @@ void	initialize_map(map *data)
     data->rectangle = 0;
     data->exit = 0;
     data->wrong_char = 0;
-    data->flood.collect = 0;
-    data->flood.exit = 0;
-    data->flood.map = NULL;
+    // data->flood.collect = 0;
+    // data->flood.exit = 0;
+    // data->flood.map = NULL;
     data->image.collected_nbr = 0;
     data->image.move_nbr = 0;
     data->image.move = 0;
     data->collected = 0;
     data->can_exit = 0;
 }
+
 
 void initialize_player(map *data)
 {
