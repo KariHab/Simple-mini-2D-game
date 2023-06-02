@@ -15,17 +15,17 @@
 int validate_if_map_is_playable(map *data)
 {
 	if (data->number_of_exit != 1)
-		exit(ft_printf("ERROR.\nThe map should have an exit\n"));
+		exit(ft_printf(RED "ERROR.\nThe map should have an exit\n" WHITE));
 	if (data->number_of_player != 1)
-		exit(ft_printf("ERROR.\nThis is a solo game\n"));
+		exit(ft_printf(RED "ERROR.\nThis is a solo game\n" WHITE));
 	if (data->rectangle == 1)
-		exit(ft_printf("ERROR.\nThe map should be rectangle\n"));
+		exit(ft_printf(RED "ERROR.\nThe map should be rectangle\n" WHITE));
 	if (data->wall == 1)
-		exit(ft_printf("ERROR.\nThis is not an open world map\n"));
+		exit(ft_printf(RED "ERROR.\nThis is not an open world map\n" WHITE));
 	if (data->number_of_teddy < 1)
-		exit(ft_printf("ERROR.\nYou should have one teddy in your room!\n"));
+		exit(ft_printf(RED "ERROR.\nYou should have one teddy in your room!\n" WHITE));
 	if (data->wrong_char > 1)
-		exit(ft_printf("ERROR.\nYou put a wrong char in the map\n"));
+		exit(ft_printf(RED "ERROR.\nYou put a wrong char in the map\n" WHITE));
 	return (0);
 }
 
@@ -73,14 +73,14 @@ void create_map(char *path, map *data)
 		i++;
 	}
 	if (fd < 3)
-		exit(ft_printf("Error.\nWrong file\n"));
+		exit(ft_printf(RED "Error.\nWrong file\n" WHITE));
 	close(fd);
 }
 
 void parsing(char *path, map *data)
 {
 	create_map(path, data);
-	count_chars(data);
+	count_chars_in_map(data);
 	// count_objects(data);
 	data->column = ft_strlen(data->map[0]);
 	check_is_map_rectangle(data);

@@ -43,7 +43,7 @@ int check_extension_map_file(char *map_file_name)
 // }
 
 /*get the number of 0 1 P E and C*/
-void count_chars(map *data)
+void count_chars_in_map(map *data)
 {
 	int i;
 	int j;
@@ -60,6 +60,8 @@ void count_chars(map *data)
 				data->number_of_teddy++;
 			else if (data->map[i][j] == 'E')
 				data->number_of_exit++;
+			else if (!(data->map[i][j] == '0' || data->map[i][j] == '1'))
+				data->wrong_char++;
 			j++;
 		}
 		j = 0;

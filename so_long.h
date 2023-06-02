@@ -103,16 +103,16 @@ void initialize_player(map *data);
 
 /*map parsing*/
 int check_extension_map_file(char *map_file_name);
-int check_chars_in_map(map *data);
-void check_is_map_rectangle(map *data);
+void count_chars_in_map(map *data);
 void check_the_wall_around_map(map *data);
+void check_is_map_rectangle(map *data);
 int validate_if_map_is_playable(map *data);
-void parsing(char *path, map *data);
-void create_map(char *path, map *data);
 map *get_map_lines(char *path, map *data);
-// void count_chars(map *data, int x, int y);
-// void count_objects(map *data);
-void count_chars(map *data);
+void create_map(char *path, map *data);
+void parsing(char *path, map *data);
+
+/*void count_chars(map *data, int x, int y);
+void count_objects(map *data);*/
 
 /*rendering*/
 mlx_image_t *load_image(char c, map *data);
