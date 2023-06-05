@@ -82,10 +82,8 @@ void parsing(char *path, map *data)
 {
 	create_map(path, data);
 	count_chars_in_map(data);
-	// count_objects(data);
 	data->column = ft_strlen(data->map[0]);
 	check_is_map_rectangle(data);
 	check_the_wall_around_map(data);
 	validate_if_map_is_playable(data);
-	// flood(data);
 }

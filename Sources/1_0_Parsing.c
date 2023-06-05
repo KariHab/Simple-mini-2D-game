@@ -23,25 +23,6 @@ int check_extension_map_file(char *map_file_name)
 		return (-1);
 }
 
-// /*get the number of 0 1 P E and C*/
-// void count_chars(map *data, int x, int y)
-// {
-// 	if (data->map[y][x] == 'P')
-// 	{
-// 		data->number_of_player++;
-// 		data->x_pos_player = x;
-// 		data->y_pos_player = y;
-// 	}
-// 	else if (data->map[y][x] == 'E')
-// 		data->number_of_exit++;
-// 	else if (data->map[y][x] == 'C')
-// 		data->number_of_teddy++;
-// 	else if (data->map[y][x] == '0' || data->map[y][x] == '1')
-// 		return ;
-// 	else
-// 		data->wrong_char++;
-// }
-
 /*get the number of 0 1 P E and C*/
 void count_chars_in_map(map *data)
 {
@@ -68,25 +49,6 @@ void count_chars_in_map(map *data)
 		i++;
 	}
 }
-
-// void count_objects(map *data)
-// {
-// 	int x;
-// 	int y;
-
-// 	y = 0;
-// 	x = 0;
-// 	while (data->map[y])
-// 	{
-// 		x = 0;
-// 		while (data->map[y][x])
-// 		{
-// 			count_chars(data, x, y);
-// 			x++;
-// 		}
-// 		y++;
-// 	}
-// }
 
 void check_the_wall_around_map(map *data)
 {

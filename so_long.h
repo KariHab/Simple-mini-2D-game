@@ -62,13 +62,6 @@ typedef struct image
 
 } t_image;
 
-typedef struct flood
-{
-    char **map;
-    int collect;
-    int exit;
-} t_flood;
-
 typedef struct map
 {
     mlx_t *mlx;
@@ -93,7 +86,6 @@ typedef struct map
     t_texture texture;
     t_image image;
     t_image old_version;
-    t_flood flood;
 
 } map;
 
@@ -110,9 +102,6 @@ int validate_if_map_is_playable(map *data);
 map *get_map_lines(char *path, map *data);
 void create_map(char *path, map *data);
 void parsing(char *path, map *data);
-
-/*void count_chars(map *data, int x, int y);
-void count_objects(map *data);*/
 
 /*rendering*/
 mlx_image_t *load_image(char c, map *data);
