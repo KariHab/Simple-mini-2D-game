@@ -15,7 +15,7 @@
 void flood(map *data)
 {
     ft_flood_cpy(data);
-    flood_fill(data->x_pos_player, data->y_pos_player, data);
+    flood_fill(data->y_pos_player, data->x_pos_player, data);
     if (data->flood.exit != data->number_of_exit)
         exit(ft_printf(RED "ERROR.\nThe exit can't be reached.\n" WHITE));
     if (data->number_of_teddy != data->flood.collect)
@@ -44,20 +44,20 @@ void ft_flood_cpy(map *data)
     }
 }
 
-void flood_fill(int x, int y, map *data)
+void flood_fill(int y, int x, map *data)
 {
-    if (x < 0 || y < 0 || x > data->column - 1 || y > data->row - 1)
+    if (x < 0 || x > data->column - 1 || y < 0 || y > data->row - 1)
         return;
-    if (data->flood.map[y][x] == 'X' || data->flood.map[y][x] == '1')
+    if (data->flood.map[y][x] == 'Z' || data->flood.map[y][x] == '1')
         return;
     if (data->flood.map[y][x] == 'C')
         data->flood.collect++;
     if (data->flood.map[y][x] == 'E')
         data->flood.exit++;
-    data->flood.map[y][x] = 'X';
-    flood_fill(x + 1, y, data);
-    flood_fill(x - 1, y, data);
-    flood_fill(x, y + 1, data);
-    flood_fill(x, y - 1, data);
+    data->flood.map[y][x] = 'Z';
+    flood_fill(y + 1, x, data);
+    flood_fill(y - 1, x, data);
+    flood_fill(y, x - 1, data);
+    flood_fill(y, x + 1, data);
     printf("%c", data->flood.map[y][x]);
 }

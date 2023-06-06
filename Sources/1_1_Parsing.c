@@ -26,8 +26,6 @@ int validate_if_map_is_playable(map *data)
 		exit(ft_printf(RED "ERROR.\nYou should have one teddy in your room!\n" WHITE));
 	if (data->wrong_char > 0)
 		exit(ft_printf(RED "ERROR.\nYou put a wrong char in the map\n" WHITE));
-	else
-		data->is_valid = 0;
 	return (0);
 }
 

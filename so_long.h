@@ -56,9 +56,6 @@ typedef struct image
     mlx_image_t *player;
     mlx_image_t *exit;
     mlx_image_t *teddy;
-    mlx_image_t *move_nbr;
-    mlx_image_t *collected_nbr;
-    mlx_image_t *move;
 
 } t_image;
 
@@ -75,7 +72,6 @@ typedef struct map
     mlx_t *mlx;
     mlx_image_t *img;
     char **map;
-    size_t line_length;
     int number_of_player;
     int number_of_teddy;
     int number_of_exit;

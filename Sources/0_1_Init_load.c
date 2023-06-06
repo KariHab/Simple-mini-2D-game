@@ -20,7 +20,6 @@ void initialize_map(map *data)
     data->number_of_player = 0;
     data->number_of_teddy = 0;
     data->steps_count = 0;
-    data->line_length = 0;
     data->map = NULL;
     data->x_pos_player = 0;
     data->y_pos_player = 0;
@@ -28,9 +27,6 @@ void initialize_map(map *data)
     data->rectangle = 0;
     data->exit = 0;
     data->wrong_char = 0;
-    data->image.collected_nbr = 0;
-    data->image.move_nbr = 0;
-    data->image.move = 0;
     data->collected = 0;
     data->can_exit = 0;
     data->flood.collect = 0;
