@@ -12,9 +12,9 @@
 
 #include "../so_long.h"
 
-void free_all(char **tab)
+void	free_all(char **tab)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (tab[i])
@@ -24,10 +24,10 @@ void free_all(char **tab)
 	}
 	free(tab);
 	tab = NULL;
-	return;
+	return ;
 }
 
-void print_moves(t_map *data)
+void	print_moves(t_map *data)
 {
 	if (data->player.steps_count == 1)
 		ft_printf(PURPLE "%d move\n" WHITE, data->player.steps_count);
@@ -35,20 +35,22 @@ void print_moves(t_map *data)
 		ft_printf(PURPLE "%d moves\n" WHITE, data->player.steps_count);
 }
 
-void print_teddy(t_map *data)
+void	print_teddy(t_map *data)
 {
 	if (data->number_of_teddy == data->collected)
-		ft_printf(GREEN "Good girl! You're done collecting now go to sleep!\n" WHITE);
+		ft_printf(GREEN "Good girl! You can go to sleep!\n" WHITE);
 	else
-		ft_printf(CYAN "Collected: %d. Left to collect %d\n" WHITE, data->collected, (data->number_of_teddy - data->collected));
+		ft_printf(CYAN "Collected: %d. Left to collect %d\n" WHITE,
+			data->collected, (data->number_of_teddy - data->collected));
 }
 
-void end_of_game(t_map *data)
+void	end_of_game(t_map *data)
 {
 	if (data->can_exit == 1)
 	{
 		mlx_close_window(data->mlx);
-		ft_printf(GREEN "You did: %d moves\nGood night!\n" WHITE, data->player.steps_count);
+		ft_printf(GREEN "You did: %d moves\nGood night!\n" WHITE,
+			data->player.steps_count);
 		remove_image(data);
 	}
 }

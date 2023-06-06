@@ -1,38 +1,51 @@
-NAME	:= so_long
-CFLAGS	:= -Wextra -Wall -Werror
-LIBMLX	:= MLX42
-CC		:= gcc
+NAME	= so_long
+CFLAGS	= -Wextra -Wall -Werror
+LIBMLX  = ./MLX42
+CC		= gcc
+RM      = rm -f
 
-HEADERS	:= -I ./include -I $(LIBMLX)/include
-# LIBS	:= $(LIBMLX)/build/libmlx42.a -ldl -lglfw -L "/Users/$(USER)/.brew/opt/glfw/lib/" -pthread -lm -framework Cocoa -framework OpenGL -framework IOKit
-LIBS	:= $(LIBMLX)/build/libmlx42.a -ldl -lglfw -pthread -lm
-SRCS	:= $(shell find ./Sources -iname "*.c")
-OBJS	:= ${SRCS:.c=.o}
 
-LIBFT	:=./libft/libft.a
+HEADERS	= -I ./include -I $(LIBMLX)/include
+# LIBS	= $(LIBMLX)/build/libmlx42.a -ldl -lglfw -L "/Users/$(USER)/.brew/opt/glfw/lib/" -pthread -lm -framework Cocoa -framework OpenGL -framework IOKit
+LIBS	= $(LIBMLX)/build/libmlx42.a -ldl -lglfw -pthread -lm
+SRCS    = ./Sources/Events.c\
+			./Sources/Init_load.c\
+			./Sources/main.c\
+			./Sources/Parsing_0.c\
+			./Sources/Parsing_1.c\
+			./Sources/Rendering_0.c\
+			./Sources/Rendering_1.c\
+			./Sources/Utils_Functions.c
 
-all: libmlx $(NAME)
+# SRCS	= $(shell find ./Sources -iname "*.c")
+OBJS	= $(SRCS:%.c=%.o)
 
-libmlx:
+LIBFT	=./Sources/libft/libft.a
+
+all: $(NAME)
+
+mlx:
 	@cmake $(LIBMLX) -B $(LIBMLX)/build && make -C $(LIBMLX)/build -j4
 
-makelibft:
-	@$(MAKE) -C ./libft
-%.o: %.c
-	@$(CC) $(CFLAGS) -o $@ -c $< $(HEADERS) && printf "Compiling: $(notdir $<)"
 
 $(NAME): $(OBJS)
-	@$(CC) $(OBJS) $(LIBS) $(HEADERS) -o $(NAME)
+	@$(MAKE) -C ./Sources/libft
+	@$(CC) $(CFLAGS) $(OBJS) $(LIBS) $(LIBFT) $(HEADERS) -o $(NAME)
+
+%.o: %.c
+	@$(CC) $(CFLAGS) -o $@ -c $< $(HEADERS)
 
 clean:
-	@rm -f $(OBJS)
-	$(MAKE) clean -C ./libft
+	@$(RM) $(OBJS)
+	@$(MAKE) clean -C ./MLX42/build
+	@$(MAKE) clean -C ./Sources/libft
 
 fclean: clean
-	@rm -f $(NAME)
-	$(MAKE) fclean -C ./libft
+	@$(RM) $(NAME)
+	@rm -rf ./MLX42/build
+	@$(MAKE) fclean -C ./Sources/libft
 
-re: clean all
+re: fclean mlx all 
 
 .PHONY: all, clean, fclean, re, libmlx
 

@@ -12,14 +12,14 @@
 
 #include "../so_long.h"
 
-t_map *get_map_lines(char *path, t_map *data)
+t_map	*get_map_lines(char *path, t_map *data)
 {
-	char *str;
-	int fd;
+	char	*str;
+	int		fd;
 
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
-		exit(ft_printf(RED "ERROR.\nOpen failed. Check the map you want to open\n" WHITE));
+		exit(ft_printf(RED "ERROR.\nOpen failed.\n" WHITE));
 	else
 	{
 		str = get_next_line(fd);
@@ -30,26 +30,26 @@ t_map *get_map_lines(char *path, t_map *data)
 			str = get_next_line(fd);
 		}
 	}
-	close(fd);
+	close (fd);
 	return (data);
 }
 
-void create_map(char *path, t_map *data)
+void	create_map(char *path, t_map *data)
 {
-	int i;
-	int fd;
+	int	i;
+	int	fd;
 
 	i = 0;
 	get_map_lines(path, data);
 	data->map = ft_calloc(sizeof(char *), (data->row + 1));
 	if (!data->map)
-		return;
+		return ;
 	fd = open(path, O_RDONLY);
 	while (fd > 0)
 	{
 		data->map[i] = get_next_line(fd);
 		if (!data->map[i])
-			break;
+			break ;
 		if (data->map[i][0] == '\n')
 			data->rectangle = 1;
 		if (data->map[i][ft_strlen(data->map[i]) - 1] == '\n')
@@ -57,14 +57,14 @@ void create_map(char *path, t_map *data)
 		i++;
 	}
 	if (fd < 0)
-		exit(ft_printf(RED "ERROR.\nOpen failed. Check the map you want to open\n" WHITE));
-	close(fd);
+		exit(ft_printf(RED "ERROR.\nOpen failed.\n" WHITE));
+	close (fd);
 }
 
-void count_chars_in_map(t_map *data)
+void	count_chars_in_map(t_map *data)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	j = 0;
@@ -78,7 +78,9 @@ void count_chars_in_map(t_map *data)
 				data->number_of_teddy++;
 			else if (data->map[i][j] == 'E')
 				data->number_of_exit++;
-			else if (!(data->map[i][j] == '0' || data->map[i][j] == '1' || data->map[i][j] == 'P' || data->map[i][j] == 'C' || data->map[i][j] == 'E'))
+			else if (!(data->map[i][j] == '0' || data->map[i][j] == '1'
+				|| data->map[i][j] == 'P' || data->map[i][j] == 'C'
+				|| data->map[i][j] == 'E'))
 				data->wrong_char++;
 			j++;
 		}
@@ -87,10 +89,10 @@ void count_chars_in_map(t_map *data)
 	}
 }
 
-void check_is_map_rectangle(t_map *data)
+void	check_is_map_rectangle(t_map *data)
 {
-	int x;
-	int y;
+	int	x;
+	int	y;
 
 	x = 0;
 	y = 0;
@@ -105,10 +107,10 @@ void check_is_map_rectangle(t_map *data)
 	}
 }
 
-void check_the_wall_around_map(t_map *data)
+void	check_the_wall_around_map(t_map *data)
 {
-	int x;
-	int y;
+	int	x;
+	int	y;
 
 	x = 0;
 	while (data->map[x])

@@ -51,16 +51,14 @@ OBJS	=	$(SRCS:.c=.o)
 
 all: $(NAME) $(SRCS)
 
-# Create and Index in archive 
 $(NAME): $(OBJS)
-	ar -rcs $(NAME) $(OBJS)
+	@ar -rcs $(NAME) $(OBJS)
 
-# clean o created
 clean:
-	$(RM) $(OBJS)
+	@$(RM) $(OBJS)
 
-# clean o created and exe
+
 fclean: clean
-	$(RM) $(NAME)
+	@$(RM) $(NAME)
 
 re: fclean all
