@@ -41,7 +41,7 @@ void count_chars_in_map(map *data)
 				data->number_of_teddy++;
 			else if (data->map[i][j] == 'E')
 				data->number_of_exit++;
-			else if (!(data->map[i][j] == '0' || data->map[i][j] == '1'))
+			else if (!(data->map[i][j] == '0' || data->map[i][j] == '1' || data->map[i][j] == 'P' || data->map[i][j] == 'C' || data->map[i][j] == 'E'))
 				data->wrong_char++;
 			j++;
 		}

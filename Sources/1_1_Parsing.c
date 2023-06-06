@@ -19,13 +19,15 @@ int validate_if_map_is_playable(map *data)
 	if (data->number_of_player != 1)
 		exit(ft_printf(RED "ERROR.\nThis is a solo game\n" WHITE));
 	if (data->rectangle == 1)
-		exit(ft_printf(RED "ERROR.\nThe map should be rectangle\n" WHITE));
+		exit(ft_printf(RED "ERROR.\nThe map should be a clean rectangle\n" WHITE));
 	if (data->wall == 1)
 		exit(ft_printf(RED "ERROR.\nThis is not an open world map\n" WHITE));
 	if (data->number_of_teddy < 1)
 		exit(ft_printf(RED "ERROR.\nYou should have one teddy in your room!\n" WHITE));
-	if (data->wrong_char > 1)
+	if (data->wrong_char > 0)
 		exit(ft_printf(RED "ERROR.\nYou put a wrong char in the map\n" WHITE));
+	else
+		data->is_valid = 0;
 	return (0);
 }
 
@@ -86,4 +88,5 @@ void parsing(char *path, map *data)
 	check_is_map_rectangle(data);
 	check_the_wall_around_map(data);
 	validate_if_map_is_playable(data);
+	flood(data);
 }

@@ -29,7 +29,7 @@
 #define TEDDY "./Assets_map/Sprites/Teddy.png"
 
 #ifndef BUFFER_SIZE
-#define BUFFER_SIZE 128
+#define BUFFER_SIZE 150
 #endif
 
 /*colors*/
@@ -62,13 +62,20 @@ typedef struct image
 
 } t_image;
 
+typedef struct flood
+{
+    char **map;
+    int collect;
+    int exit;
+
+} t_flood;
+
 typedef struct map
 {
     mlx_t *mlx;
     mlx_image_t *img;
     char **map;
     size_t line_length;
-    // int fd;
     int number_of_player;
     int number_of_teddy;
     int number_of_exit;
@@ -86,6 +93,7 @@ typedef struct map
     t_texture texture;
     t_image image;
     t_image old_version;
+    t_flood flood;
 
 } map;
 
@@ -115,14 +123,13 @@ void render(map *data);
 /*event handle*/
 void key_hook_handler(mlx_key_data_t keydata, void *param);
 void move_player(map *data, char direction);
-void flood(map *data);
-void flood_fill(int x, int y, map *data);
-void ft_flood_cpy(map *data);
 int check_tile_not_wall(char c);
 int check_next_tile(map *data, char direction, char tile);
 void end_of_game(map *data);
 void print_moves(map *data);
 void print_teddy(map *data);
 void free_all(char **tab);
-
+void flood(map *data);
+void flood_fill(int y, int x, map *data);
+void ft_flood_cpy(map *data);
 #endif

@@ -33,6 +33,9 @@ void initialize_map(map *data)
     data->image.move = 0;
     data->collected = 0;
     data->can_exit = 0;
+    data->flood.collect = 0;
+    data->flood.exit = 0;
+    data->flood.map = NULL;
 }
 
 void initialize_player(map *data)
