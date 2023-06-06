@@ -12,19 +12,56 @@
 
 #include "../so_long.h"
 
-int check_extension_map_file(char *map_file_name)
+t_map *get_map_lines(char *path, t_map *data)
 {
-	size_t len;
+	char *str;
+	int fd;
 
-	len = ft_strlen(map_file_name);
-	if (((len > 4) && map_file_name[len - 4] == '.' && map_file_name[len - 3] == 'b' && map_file_name[len - 2] == 'e' && map_file_name[len - 1] == 'r'))
-		return (0);
+	fd = open(path, O_RDONLY);
+	if (fd < 0)
+		exit(ft_printf(RED "ERROR.\nOpen failed. Check the map you want to open\n" WHITE));
 	else
-		return (-1);
+	{
+		str = get_next_line(fd);
+		while (str != NULL)
+		{
+			data->row++;
+			free(str);
+			str = get_next_line(fd);
+		}
+	}
+	close(fd);
+	return (data);
 }
 
-/*get the number of 0 1 P E and C*/
-void count_chars_in_map(map *data)
+void create_map(char *path, t_map *data)
+{
+	int i;
+	int fd;
+
+	i = 0;
+	get_map_lines(path, data);
+	data->map = ft_calloc(sizeof(char *), (data->row + 1));
+	if (!data->map)
+		return;
+	fd = open(path, O_RDONLY);
+	while (fd > 0)
+	{
+		data->map[i] = get_next_line(fd);
+		if (!data->map[i])
+			break;
+		if (data->map[i][0] == '\n')
+			data->rectangle = 1;
+		if (data->map[i][ft_strlen(data->map[i]) - 1] == '\n')
+			data->map[i][ft_strlen(data->map[i]) - 1] = '\0';
+		i++;
+	}
+	if (fd < 0)
+		exit(ft_printf(RED "ERROR.\nOpen failed. Check the map you want to open\n" WHITE));
+	close(fd);
+}
+
+void count_chars_in_map(t_map *data)
 {
 	int i;
 	int j;
@@ -50,7 +87,25 @@ void count_chars_in_map(map *data)
 	}
 }
 
-void check_the_wall_around_map(map *data)
+void check_is_map_rectangle(t_map *data)
+{
+	int x;
+	int y;
+
+	x = 0;
+	y = 0;
+	while (data->map[x])
+	{
+		while (data->map[x][y] && data->map[x][y] != '\n')
+			y++;
+		if (y != data->column)
+			data->rectangle = 1;
+		y = 0;
+		x++;
+	}
+}
+
+void check_the_wall_around_map(t_map *data)
 {
 	int x;
 	int y;
@@ -67,24 +122,6 @@ void check_the_wall_around_map(map *data)
 				data->wall = 1;
 			y++;
 		}
-		x++;
-	}
-}
-
-void check_is_map_rectangle(map *data)
-{
-	int x;
-	int y;
-
-	x = 0;
-	y = 0;
-	while (data->map[x])
-	{
-		while (data->map[x][y] && data->map[x][y] != '\n')
-			y++;
-		if (y != data->column)
-			data->rectangle = 1;
-		y = 0;
 		x++;
 	}
 }

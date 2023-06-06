@@ -6,7 +6,7 @@
 /*   By: khabbout <khabbout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 20:11:08 by khabbout          #+#    #+#             */
-/*   Updated: 2023/05/25 19:54:48 by khabbout         ###   ########.fr       */
+/*   Updated: 2023/06/06 10:16:34 by khabbout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ int ft_printu(unsigned int nb);
 int ft_printptr(uintptr_t ptr);
 int ft_printhex(unsigned int nbr, char specifier);
 
-
 int ft_isalpha(int c);
 int ft_isdigit(int c);
 int ft_isalnum(int c);
@@ -39,7 +38,6 @@ int ft_putchar_fd(char c, int fd);
 
 int ft_toupper(int c);
 int ft_tolower(int c);
-
 
 size_t ft_strlcpy(char *dst, char *src, size_t dstsize);
 size_t ft_strlcat(char *dst, char *src, size_t dstsize);
@@ -56,7 +54,6 @@ char *ft_strmapi(char *s, char (*f)(unsigned int, char));
 void ft_striteri(char *s, void (*f)(unsigned int, char *));
 int ft_putstr_fd(char *s, int fd);
 void ft_putendl_fd(char *s, int fd);
-
 
 void *ft_memset(void *b, int c, size_t len);
 void ft_bzero(void *s, size_t n);

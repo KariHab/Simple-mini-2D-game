@@ -12,7 +12,7 @@
 
 #include "../so_long.h"
 
-int validate_if_map_is_playable(map *data)
+int validate_if_map_is_playable(t_map *data)
 {
 	if (data->number_of_exit != 1)
 		exit(ft_printf(RED "ERROR.\nThe map should have an exit\n" WHITE));
@@ -29,56 +29,46 @@ int validate_if_map_is_playable(map *data)
 	return (0);
 }
 
-map *get_map_lines(char *path, map *data)
+void path_checker(t_map *data, int x, int y)
 {
-	char *str;
-	int fd;
-
-	fd = open(path, O_RDONLY);
-	if (fd < 0)
-		exit(ft_printf(RED "ERROR.\nOpen failed. Check the map you want to open\n" WHITE));
-	else
-	{
-		str = get_next_line(fd);
-		while (str != NULL)
-		{
-			data->row++;
-			free(str);
-			str = get_next_line(fd);
-		}
-	}
-	close(fd);
-	return (data);
-}
-
-void create_map(char *path, map *data)
-{
-	int i;
-	int fd;
-
-	i = 0;
-	get_map_lines(path, data);
-	data->map = ft_calloc(sizeof(char *), (data->row + 1));
-	if (!data->map)
+	map_copy(data);
+	if ((data->flood.map_copy[y][x] == '1' || data->flood.map_copy[y][x] == 'x') || y < 0 || x < 0)
 		return;
-	fd = open(path, O_RDONLY);
-	while (fd > 0)
-	{
-		data->map[i] = get_next_line(fd);
-		if (!data->map[i])
-			break;
-		if (data->map[i][0] == '\n')
-			data->rectangle = 1;
-		if (data->map[i][ft_strlen(data->map[i]) - 1] == '\n')
-			data->map[i][ft_strlen(data->map[i]) - 1] = '\0';
-		i++;
-	}
-	if (fd < 0)
-		exit(ft_printf(RED "ERROR.\nOpen failed. Check the map you want to open\n" WHITE));
-	close(fd);
+	if (data->flood.map_copy[y][x] == 'C')
+		data->flood.teddy_to_collect++;
+	else if (data->flood.map_copy[y][x] == 'E')
+		data->flood.exit++;
+	data->flood.map_copy[y][x] = 'x';
+	printf("Real: %d Flood: %d\n", data->number_of_exit, data->flood.exit);
+	path_checker(data, x, y + 1);
+	path_checker(data, x, y - 1);
+	path_checker(data, x + 1, y);
+	path_checker(data, x - 1, y);
+	return;
 }
 
-void parsing(char *path, map *data)
+void map_copy(t_map *data)
+{
+	int index;
+
+	index = 0;
+	data->flood.map_copy = ft_calloc((data->row + 1), sizeof(char *));
+	if (!data->flood.map_copy)
+		exit(1);
+	while (data->map[index])
+	{
+		data->flood.map_copy[index] = ft_calloc((data->column + 1), sizeof(char));
+		if (!data->flood.map_copy[index])
+		{
+			free_all(data->flood.map_copy);
+			exit(1);
+		}
+		ft_memcpy(data->flood.map_copy[index], data->map[index], data->column + 1);
+		index++;
+	}
+}
+
+void parsing(char *path, t_map *data)
 {
 	create_map(path, data);
 	count_chars_in_map(data);
@@ -86,5 +76,10 @@ void parsing(char *path, map *data)
 	check_is_map_rectangle(data);
 	check_the_wall_around_map(data);
 	validate_if_map_is_playable(data);
-	flood(data);
+	path_checker(data, data->player.x_pos_player, data->player.y_pos_player);
+	// if (data->number_of_teddy != data->flood.teddy_to_collect)
+	// 	exit(ft_printf(RED"Error\nSome teddy cannot be collected.\n"WHITE));
+	// if (data->number_of_exit != data->flood.exit)
+	// 	exit(ft_printf(RED"Error.\nThe exit cannot be reached.\n"WHITE));
+	free_all(data->flood.map_copy);
 }

@@ -59,12 +59,18 @@ typedef struct image
 
 } t_image;
 
+typedef struct player
+{
+    int steps_count;
+    int x_pos_player;
+    int y_pos_player;
+} t_player;
+
 typedef struct flood
 {
-    char **map;
-    int collect;
+    int teddy_to_collect;
     int exit;
-
+    char **map_copy;
 } t_flood;
 
 typedef struct map
@@ -79,9 +85,6 @@ typedef struct map
     int column;
     int rectangle;
     int wall;
-    int steps_count;
-    int x_pos_player;
-    int y_pos_player;
     int exit;
     int collected;
     int can_exit;
@@ -89,43 +92,45 @@ typedef struct map
     t_texture texture;
     t_image image;
     t_image old_version;
+    t_player player;
     t_flood flood;
 
-} map;
+} t_map;
 
 /*initialization*/
-void initialize_map(map *data);
-void initialize_player(map *data);
+void initialize_map(t_map *data);
+void initialize_player(t_map *data);
 
 /*map parsing*/
 int check_extension_map_file(char *map_file_name);
-void count_chars_in_map(map *data);
-void check_the_wall_around_map(map *data);
-void check_is_map_rectangle(map *data);
-int validate_if_map_is_playable(map *data);
-map *get_map_lines(char *path, map *data);
-void create_map(char *path, map *data);
-void parsing(char *path, map *data);
+void count_chars_in_map(t_map *data);
+void check_the_wall_around_map(t_map *data);
+void check_is_map_rectangle(t_map *data);
+int validate_if_map_is_playable(t_map *data);
+t_map *get_map_lines(char *path, t_map *dataa);
+void create_map(char *path, t_map *data);
+void parsing(char *path, t_map *data);
+void path_checker(t_map *data, int x, int y);
+void map_copy(t_map *data);
 
 /*rendering*/
-mlx_image_t *load_image(char c, map *data);
-void create_image(map *data);
-void remove_image(map *data);
-void remove_texture(map *data);
-void load_texture(map *data);
+mlx_image_t *load_image(char c, t_map *data);
+void create_image(t_map *data);
+void remove_image(t_map *data);
+void remove_texture(t_map *data);
+void load_texture(t_map *data);
 void create_the_map_render(void *param);
-void render(map *data);
+void render(t_map *data);
+void map_copy(t_map *data);
 
 /*event handle*/
 void key_hook_handler(mlx_key_data_t keydata, void *param);
-void move_player(map *data, char direction);
+void move_player(t_map *data, char direction);
 int check_tile_not_wall(char c);
-int check_next_tile(map *data, char direction, char tile);
-void end_of_game(map *data);
-void print_moves(map *data);
-void print_teddy(map *data);
+int check_next_tile(t_map *data, char direction, char tile);
+void end_of_game(t_map *data);
+void print_moves(t_map *data);
+void print_teddy(t_map *data);
 void free_all(char **tab);
-void flood(map *data);
-void flood_fill(int y, int x, map *data);
-void ft_flood_cpy(map *data);
+
 #endif

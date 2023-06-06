@@ -12,7 +12,7 @@
 
 #include "../so_long.h"
 
-mlx_image_t *load_image(char c, map *data)
+mlx_image_t *load_image(char c, t_map *data)
 {
 	if (c == '1')
 		return (data->image.wall);
@@ -31,7 +31,7 @@ void create_the_map_render(void *param)
 {
 	int x;
 	int y;
-	map *data;
+	t_map *data;
 
 	data = param;
 	y = 0;
@@ -51,7 +51,7 @@ void create_the_map_render(void *param)
 	}
 }
 
-void render(map *data)
+void render(t_map *data)
 {
 	data->mlx = mlx_init(data->column * 32, data->row * 32, "Grab all your teddy and go to sleep!", false);
 	if (!data->mlx)

@@ -12,7 +12,7 @@
 
 #include "../so_long.h"
 
-void remove_texture(map *data)
+void remove_texture(t_map *data)
 {
     mlx_delete_texture(data->texture.wall);
     mlx_delete_texture(data->texture.floor);
@@ -21,7 +21,7 @@ void remove_texture(map *data)
     mlx_delete_texture(data->texture.teddy);
 }
 
-void load_texture(map *data)
+void load_texture(t_map *data)
 {
     data->texture.wall = mlx_load_png(WALL);
     data->texture.teddy = mlx_load_png(TEDDY);
@@ -30,7 +30,7 @@ void load_texture(map *data)
     data->texture.exit = mlx_load_png(EXIT);
 }
 
-void create_image(map *data)
+void create_image(t_map *data)
 {
     data->image.wall = mlx_texture_to_image(data->mlx, data->texture.wall);
     data->image.floor = mlx_texture_to_image(data->mlx, data->texture.floor);
@@ -39,7 +39,7 @@ void create_image(map *data)
     data->image.teddy = mlx_texture_to_image(data->mlx, data->texture.teddy);
 }
 
-void remove_image(map *data)
+void remove_image(t_map *data)
 {
     mlx_delete_image(data->mlx, data->old_version.wall);
     mlx_delete_image(data->mlx, data->old_version.player);
