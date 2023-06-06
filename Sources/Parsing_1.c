@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   1_1_Parsing.c                                      :+:      :+:    :+:   */
+/*   Parsing_1.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: khabbout <khabbout@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/25 11:34:27 by khabbout          #+#    #+#             */
-/*   Updated: 2023/05/25 11:34:27 by khabbout         ###   ########.fr       */
+/*   Created: 2023/06/06 12:40:48 by khabbout          #+#    #+#             */
+/*   Updated: 2023/06/06 12:40:48 by khabbout         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,17 +29,30 @@ int validate_if_map_is_playable(t_map *data)
 	return (0);
 }
 
+void flood(t_map *data)
+{
+	printf("Real: %d Flood: %d\n", data->number_of_exit, data->flood.exit);
+	map_copy(data);
+	path_checker(data, data->player.x_pos_player, data->player.y_pos_player);
+	if (data->number_of_teddy != data->flood.teddy_to_collect)
+		exit(ft_printf(RED "Error\nSome teddy cannot be collected.\n" WHITE));
+	if (data->number_of_exit != data->flood.exit)
+		exit(ft_printf(RED "Error.\nThe exit cannot be reached.\n" WHITE));
+	free_all(data->flood.map_copy);
+}
+
 void path_checker(t_map *data, int x, int y)
 {
-	map_copy(data);
-	if ((data->flood.map_copy[y][x] == '1' || data->flood.map_copy[y][x] == 'x') || y < 0 || x < 0)
+
+	if (y < 0 || x < 0 || x > data->column - 1 || y > data->row - 1)
+		return;
+	if ((data->flood.map_copy[y][x] == '1' || data->flood.map_copy[y][x] == 'x'))
 		return;
 	if (data->flood.map_copy[y][x] == 'C')
 		data->flood.teddy_to_collect++;
 	else if (data->flood.map_copy[y][x] == 'E')
 		data->flood.exit++;
 	data->flood.map_copy[y][x] = 'x';
-	printf("Real: %d Flood: %d\n", data->number_of_exit, data->flood.exit);
 	path_checker(data, x, y + 1);
 	path_checker(data, x, y - 1);
 	path_checker(data, x + 1, y);
@@ -76,10 +89,5 @@ void parsing(char *path, t_map *data)
 	check_is_map_rectangle(data);
 	check_the_wall_around_map(data);
 	validate_if_map_is_playable(data);
-	path_checker(data, data->player.x_pos_player, data->player.y_pos_player);
-	// if (data->number_of_teddy != data->flood.teddy_to_collect)
-	// 	exit(ft_printf(RED"Error\nSome teddy cannot be collected.\n"WHITE));
-	// if (data->number_of_exit != data->flood.exit)
-	// 	exit(ft_printf(RED"Error.\nThe exit cannot be reached.\n"WHITE));
-	free_all(data->flood.map_copy);
+	flood(data);
 }

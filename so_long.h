@@ -89,6 +89,7 @@ typedef struct map
     int collected;
     int can_exit;
     int wrong_char;
+    int valid;
     t_texture texture;
     t_image image;
     t_image old_version;
@@ -112,6 +113,7 @@ void create_map(char *path, t_map *data);
 void parsing(char *path, t_map *data);
 void path_checker(t_map *data, int x, int y);
 void map_copy(t_map *data);
+void flood(t_map *data);
 
 /*rendering*/
 mlx_image_t *load_image(char c, t_map *data);
@@ -121,7 +123,6 @@ void remove_texture(t_map *data);
 void load_texture(t_map *data);
 void create_the_map_render(void *param);
 void render(t_map *data);
-void map_copy(t_map *data);
 
 /*event handle*/
 void key_hook_handler(mlx_key_data_t keydata, void *param);
