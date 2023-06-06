@@ -35,7 +35,6 @@ int main(int ac, char **av)
             exit(ft_printf(RED "Format file is not .ber\n" WHITE));
         initialize_map(&data);
         parsing(av[1], &data);
-        initialize_player(&data);
         render(&data);
         mlx_terminate(data.mlx);
         free_all(data.map);

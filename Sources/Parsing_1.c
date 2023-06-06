@@ -31,19 +31,17 @@ int validate_if_map_is_playable(t_map *data)
 
 void flood(t_map *data)
 {
-	printf("Real: %d Flood: %d\n", data->number_of_exit, data->flood.exit);
 	map_copy(data);
-	path_checker(data, data->player.x_pos_player, data->player.y_pos_player);
-	if (data->number_of_teddy != data->flood.teddy_to_collect)
+	path_checker(data, data->player.y_pos_player, data->player.x_pos_player);
+	if (data->flood.teddy_to_collect != data->number_of_teddy)
 		exit(ft_printf(RED "Error\nSome teddy cannot be collected.\n" WHITE));
-	if (data->number_of_exit != data->flood.exit)
+	if (data->flood.exit != data->number_of_exit)
 		exit(ft_printf(RED "Error.\nThe exit cannot be reached.\n" WHITE));
 	free_all(data->flood.map_copy);
 }
 
 void path_checker(t_map *data, int x, int y)
 {
-
 	if (y < 0 || x < 0 || x > data->column - 1 || y > data->row - 1)
 		return;
 	if ((data->flood.map_copy[y][x] == '1' || data->flood.map_copy[y][x] == 'x'))
@@ -85,6 +83,7 @@ void parsing(char *path, t_map *data)
 {
 	create_map(path, data);
 	count_chars_in_map(data);
+	initialize_player(data);
 	data->column = ft_strlen(data->map[0]);
 	check_is_map_rectangle(data);
 	check_the_wall_around_map(data);
