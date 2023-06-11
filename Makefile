@@ -8,16 +8,15 @@ RM      = rm -f
 HEADERS	= -I ./include -I $(LIBMLX)/include
 # LIBS	= $(LIBMLX)/build/libmlx42.a -ldl -lglfw -L "/Users/$(USER)/.brew/opt/glfw/lib/" -pthread -lm -framework Cocoa -framework OpenGL -framework IOKit
 LIBS	= $(LIBMLX)/build/libmlx42.a -ldl -lglfw -pthread -lm
-SRCS    = ./Sources/Events.c\
-			./Sources/Init_load.c\
-			./Sources/main.c\
-			./Sources/Parsing_0.c\
-			./Sources/Parsing_1.c\
-			./Sources/Rendering_0.c\
-			./Sources/Rendering_1.c\
-			./Sources/Utils_Functions.c
+SRCS    = ./sources/Events.c\
+			./sources/Init_load.c\
+			./sources/main.c\
+			./sources/Parsing_0.c\
+			./sources/Parsing_1.c\
+			./sources/Rendering_0.c\
+			./sources/Rendering_1.c\
+			./sources/Utils_Functions.c
 
-# SRCS	= $(shell find ./Sources -iname "*.c")
 OBJS	= $(SRCS:%.c=%.o)
 
 LIBFT	=./Sources/libft/libft.a

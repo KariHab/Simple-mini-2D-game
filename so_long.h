@@ -18,19 +18,15 @@
 # include <fcntl.h>
 # include <stdlib.h>
 # include <string.h>
-# include "Sources/libft/libft.h"
+# include "sources/libft/libft.h"
 # include "MLX42/include/MLX42/MLX42.h"
 
 /*sprites*/
-# define PLAYER "./Assets_map/Sprites/Player.png"
-# define EXIT "./Assets_map/Sprites/Bed_Exit.png"
-# define WALL "./Assets_map/Sprites/Wall.png"
-# define FLOOR "./Assets_map/Sprites/Floor.png"
-# define TEDDY "./Assets_map/Sprites/Teddy.png"
-
-// # ifndef BUFFER_SIZE
-// #  define BUFFER_SIZE 150
-// # endif
+# define PLAYER "./textures/Player.png"
+# define EXIT "./textures/Bed_Exit.png"
+# define WALL "./textures/Wall.png"
+# define FLOOR "./textures/Floor.png"
+# define TEDDY "./textures/Teddy.png"
 
 /*colors*/
 # define RED "\033[0;31m"
